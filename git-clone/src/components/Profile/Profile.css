@@ -7,8 +7,8 @@
 }
 
 .user-profile-section {
-    width: 300px;
-    min-height: 100vh;
+    width: 250px;
+    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
     padding: 40px 10px;

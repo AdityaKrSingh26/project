@@ -17,3 +17,8 @@ html {
 .line-break {
   border-bottom: 1px solid gray;
 }
+
+p {
+  margin: 0;
+  padding: 0;
+}
