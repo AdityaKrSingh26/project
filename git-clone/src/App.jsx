@@ -5,6 +5,9 @@ import LoginPage from "./components/AuthPage/loginPage";
 import Profile from "./components/Profile/Profile";
 import SearchPage from "./components/SearchPage/SearchPage";
 import RepositriesPage from "./components/RepostriesPage/RepositriesPage";
+import Repo from "./components/RepoView/Repo";
+import PullReqest from "./components/PullRequest/PullRequest";
+import IssueView from "./components/IssueView/IssueView";
 
 const App = () => {
   return (
@@ -17,6 +20,9 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/repo" element={<RepositriesPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/repoview" element={<Repo />} />
+            <Route path="/pullrequest" element={<PullReqest />} />
+            <Route path="/issue" element={<IssueView />} />
           </Routes>
         </Router>
       </div>

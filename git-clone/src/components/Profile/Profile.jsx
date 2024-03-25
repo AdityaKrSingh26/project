@@ -4,6 +4,7 @@ import "./Profile.css"
 import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
 import { UnderlineNav } from '@primer/react'
 import { BookIcon, RepoIcon, PivotColumnIcon, PackageIcon, EyeIcon } from '@primer/octicons-react';
+import ApexChart from './HeatMap';
 
 
 
@@ -109,7 +110,10 @@ function Profile() {
                         <p className='language'>Language</p>
                     </div>
                 </div>
+
+
             </div>
+            <ApexChart />
         </>
     )
 }
