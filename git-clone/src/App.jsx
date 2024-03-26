@@ -6,6 +6,7 @@ import Profile from "./components/Profile/Profile";
 import SearchPage from "./components/SearchPage/SearchPage";
 import RepositriesPage from "./components/RepostriesPage/RepositriesPage";
 import Repo from "./components/RepoView/Repo";
+import CreateRepo from "./components/CreateRepo/CreateRepo";
 import PullReqest from "./components/PullRequest/PullRequest";
 import IssueView from "./components/IssueView/IssueView";
 
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/repoview" element={<Repo />} />
             <Route path="/pullrequest" element={<PullReqest />} />
             <Route path="/issue" element={<IssueView />} />
+            <Route path="/createRepo" element={<CreateRepo />} />
           </Routes>
         </Router>
       </div>
