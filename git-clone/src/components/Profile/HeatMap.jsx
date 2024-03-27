@@ -23,39 +23,39 @@ const ApexChart = () => {
 
     const [series, setSeries] = useState([
         {
-            name: 'Metric1',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric2',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric3',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric4',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric5',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric6',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric7',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric8',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         },
         {
-            name: 'Metric9',
+            name: '',
             data: generateData(18, { min: 0, max: 90 })
         }
     ]);
@@ -68,7 +68,7 @@ const ApexChart = () => {
         dataLabels: {
             enabled: false
         },
-        colors: ["#008FFB"],
+        colors: ["#39d252"],
         title: {
             text: 'HeatMap Chart (Single color)'
         },

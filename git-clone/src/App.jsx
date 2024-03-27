@@ -8,6 +8,7 @@ import RepositriesPage from "./components/RepostriesPage/RepositriesPage";
 import Repo from "./components/RepoView/Repo";
 import PullReqest from "./components/PullRequest/PullRequest";
 import IssueView from "./components/IssueView/IssueView";
+import NotificationPage from "./components/NotificationPage/NotificationPage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/repoview" element={<Repo />} />
             <Route path="/pullrequest" element={<PullReqest />} />
             <Route path="/issue" element={<IssueView />} />
+            <Route path="/notification" element={<NotificationPage />} />
           </Routes>
         </Router>
       </div>
