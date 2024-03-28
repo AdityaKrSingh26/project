@@ -45,7 +45,7 @@
 }
 
 
-.user-repo-section {
+.repo-card-wrapper {
     margin: 0 auto;
     width: 100%;
     display: flex;
@@ -76,4 +76,11 @@
 .description {
     color: grey;
     font-size: 15px;
+}
+
+.heat-map-section {
+    padding: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

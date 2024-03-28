@@ -1,90 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
+import React from 'react';
+import HeatMap from '@uiw/react-heat-map';
 
-const ApexChart = () => {
+const value = [
+    { date: '2016/01/11', count: 2 },
+    { date: '2016/01/12', count: 20 },
+    { date: '2016/01/13', count: 10 },
+    ...[...Array(17)].map((_, idx) => ({ date: `2016/02/${idx + 10}`, count: idx, content: '' })),
+    { date: '2016/04/11', count: 2 },
+    { date: '2016/05/01', count: 5 },
+    { date: '2016/05/02', count: 5 },
+    { date: '2016/05/04', count: 11 },
+];
 
-    function generateData(count, yrange) {
-        var i = 0;
-        var series = [];
-        while (i < count) {
-            var x = (i + 1).toString();
-            var y =
-                Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-
-            series.push({
-                x: x,
-                y: y
-            });
-            i++;
-        }
-        return series;
-    }
-
-
-    const [series, setSeries] = useState([
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        },
-        {
-            name: '',
-            data: generateData(18, { min: 0, max: 90 })
-        }
-    ]);
-
-    const [options, setOptions] = useState({
-        chart: {
-            height: 350,
-            type: 'heatmap',
-        },
-        dataLabels: {
-            enabled: false
-        },
-        colors: ["#39d252"],
-        title: {
-            text: 'HeatMap Chart (Single color)'
-        },
-    });
-
-    // Assuming generateData is a function that generates data for the chart
-    // If it's not defined in this scope, you need to import or define it
-
+const HeatMapProfile = () => {
     return (
         <div>
-            <div id="chart">
-                <ReactApexChart options={options} series={series} type="heatmap" height={350} />
-            </div>
-            <div id="html-dist"></div>
+            <HeatMap
+                style={{ width: '700px', height: '300px', color: 'white' }}
+                value={value}
+                weekLabels={['', 'Mon', '', 'Wed', '', 'Fri', '']}
+                startDate={new Date('2016/01/01')}
+                rectSize={15}
+                panelColors={{
+                    0: '#171b23',
+                    2: '#e4b293',
+                    4: '#d48462',
+                    10: '#c2533a',
+                    20: '#ad001d',
+                    30: '#000',
+                }}
+            />
         </div>
-    );
+    )
 };
 
-export default ApexChart;
+export default HeatMapProfile

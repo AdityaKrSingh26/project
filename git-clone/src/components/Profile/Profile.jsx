@@ -4,7 +4,7 @@ import "./Profile.css"
 import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
 import { UnderlineNav } from '@primer/react'
 import { BookIcon, RepoIcon, PivotColumnIcon, PackageIcon, EyeIcon } from '@primer/octicons-react';
-import ApexChart from './HeatMap';
+import HeatMapProfile from './HeatMap';
 
 
 
@@ -89,31 +89,37 @@ function Profile() {
 
 
                 <div className="user-repo-section">
-                    <div className="repo">
-                        <h3 className='repo-name'>Repo Name</h3>
-                        <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
-                        <p className='language'>Language</p>
+                    <div className="repo-card-wrapper">
+                        <div className="repo">
+                            <h3 className='repo-name'>Repo Name</h3>
+                            <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
+                            <p className='language'>Language</p>
+                        </div>
+                        <div className="repo">
+                            <h3 className='repo-name'>Repo Name</h3>
+                            <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
+                            <p className='language'>Language</p>
+                        </div>
+                        <div className="repo">
+                            <h3 className='repo-name'>Repo Name</h3>
+                            <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
+                            <p className='language'>Language</p>
+                        </div>
+                        <div className="repo">
+                            <h3 className='repo-name'>Repo Name</h3>
+                            <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
+                            <p className='language'>Language</p>
+                        </div>
                     </div>
-                    <div className="repo">
-                        <h3 className='repo-name'>Repo Name</h3>
-                        <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
-                        <p className='language'>Language</p>
-                    </div>
-                    <div className="repo">
-                        <h3 className='repo-name'>Repo Name</h3>
-                        <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
-                        <p className='language'>Language</p>
-                    </div>
-                    <div className="repo">
-                        <h3 className='repo-name'>Repo Name</h3>
-                        <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
-                        <p className='language'>Language</p>
+
+                    <div className="heat-map-section">
+                        <HeatMapProfile />
                     </div>
                 </div>
 
 
             </div>
-            <ApexChart />
+
         </>
     )
 }
