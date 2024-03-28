@@ -1,7 +1,12 @@
 import React from 'react'
 
+import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
+import { UnderlineNav, TextInput, Button } from "@primer/react";
 
 import "./CreateNewIssue.css"
+import Editor from './Editor';
+import AvatarIcon from '../Dashboard/Navbar/Avatar/Avatar';
+
 
 function CreateNewIssue() {
     return (
@@ -23,7 +28,31 @@ function CreateNewIssue() {
             </UnderlineNav>
 
             <div className="issue-add-section-wrapper">
-                <div className="add-issue-left-section">
+                <div className="add-issue-wrapper">
+                    <div className="add-issue-left-section">
+                        <AvatarIcon />
+                        <div className="issue-input">
+                            <h4>Title</h4>
+                            <TextInput
+                                sx={{
+                                    marginBottom: '20px',
+                                    width: "700px",
+                                    height: "30px",
+                                    backgroundColor: "transparent", // Make the background transparent
+                                    color: "whitesmoke", // Ensure the icon color is white
+                                    "&:hover": {
+                                        backgroundColor: "transparent",
+                                    },
+                                }}
+                            />
+                            <h4>Add a description</h4>
+                            <div className="editor-container">
+                                <Editor />
+                            </div>
+                            <Button className='Submit-issue'>Submit New Issue</Button>
+                        </div>
+
+                    </div>
 
                 </div>
 

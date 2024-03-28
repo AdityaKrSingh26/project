@@ -47,7 +47,7 @@
 
 .issue-detail-left {
     width: 300px;
-    border-left: 0.5px solid gray;
+    /* border-left: 0.5px solid gray; */
     /* background-color: #228736; */
     /* height: 200px; */
 }

@@ -1,0 +1,19 @@
+.add-issue-left-section {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.issue-input {
+    width: 100%;
+}
+
+.issue-input h3 {
+    margin-bottom: 10px;
+}
+
+.Submit-issue {
+    margin-top: 60px;
+    background-color: #228736 !important;
+    color: whitesmoke !important;
+}
