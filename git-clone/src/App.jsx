@@ -9,6 +9,8 @@ import Repo from "./components/RepoView/Repo";
 import PullReqest from "./components/PullRequest/PullRequest";
 import IssueView from "./components/IssueView/IssueView";
 import NotificationPage from "./components/NotificationPage/NotificationPage";
+import IssueDetails from "./components/IssueDetails/IssueDetails";
+import CreateNewIssue from "./components/CreateNewIssue/CreateNewIssue";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
             <Route path="/pullrequest" element={<PullReqest />} />
             <Route path="/issue" element={<IssueView />} />
             <Route path="/notification" element={<NotificationPage />} />
+            <Route path="/issueDetails" element={<IssueDetails />} />
+            <Route path="/addIssue" element={<CreateNewIssue />} />
           </Routes>
         </Router>
       </div>
