@@ -14,6 +14,7 @@ import IssueDetails from "./components/IssueDetails/IssueDetails";
 import CreateNewIssue from "./components/CreateNewIssue/CreateNewIssue";
 import EditCode from "./components/EditCode/EditCode";
 
+
 const App = () => {
   return (
     <ThemeProvider>
@@ -35,7 +36,6 @@ const App = () => {
 
             <Route path="/createRepo" element={<CreateRepo />} />
             <Route path="/editcode" element={<EditCode />} />
-
           </Routes>
         </Router>
       </div>
