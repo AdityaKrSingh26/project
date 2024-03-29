@@ -13,6 +13,7 @@ import NotificationPage from "./components/NotificationPage/NotificationPage";
 import IssueDetails from "./components/IssueDetails/IssueDetails";
 import CreateNewIssue from "./components/CreateNewIssue/CreateNewIssue";
 import EditCode from "./components/EditCode/EditCode";
+import RepoSettingPage from "./components/RepoSettingsPage/RepoSettingPage";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
 
             <Route path="/createRepo" element={<CreateRepo />} />
             <Route path="/editcode" element={<EditCode />} />
+            <Route path="/repoSettings" element={<RepoSettingPage />} />
 
           </Routes>
         </Router>

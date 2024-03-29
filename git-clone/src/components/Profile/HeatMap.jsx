@@ -15,19 +15,26 @@ const value = [
 const HeatMapProfile = () => {
     return (
         <div>
+            <h4
+                style={{ color: 'gray' }}
+            >Recent Contribution:</h4>
             <HeatMap
-                style={{ width: '700px', height: '300px', color: 'white' }}
+                style={{ width: '700px', height: '200px', color: 'white' }}
                 value={value}
-                weekLabels={['', 'Mon', '', 'Wed', '', 'Fri', '']}
+                weekLabels={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
                 startDate={new Date('2016/01/01')}
                 rectSize={15}
+                space={3}
+                rectProps={{
+                    rx: 2.5
+                }}
                 panelColors={{
                     0: '#171b23',
-                    2: '#e4b293',
-                    4: '#d48462',
-                    10: '#c2533a',
-                    20: '#ad001d',
-                    30: '#000',
+                    2: '#d48462',
+                    4: '#016d33',
+                    10: '#26a641',
+                    20: '#38d352',
+                    30: '#38d352',
                 }}
             />
         </div>
