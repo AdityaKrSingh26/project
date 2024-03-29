@@ -6,14 +6,14 @@ import { Box, Button } from "@primer/react";
 import axios from "axios";
 import { useState } from "react";
 
-function LoginPage() {
+function SignUpPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/login", {
+      const res = await axios.post("http://localhost:3000/signUp", {
         username,
         password,
       });
@@ -72,20 +72,12 @@ function LoginPage() {
           </div>
 
           <Button variant="primary" sx={{ width: 250 }} onClick={handleLogin}>
-            Sign In
+            Sign Up
           </Button>
-        </div>
-        <div className="pass-box">
-          <p>
-            <a href="/signin">Sign in with a passkey</a>
-          </p>
-          <p>
-            New to GitHub? <a href="/signup">Create an account</a>
-          </p>
         </div>
       </div>
     </div>
   );
 }
 
-export default LoginPage;
+export default SignUpPage;
