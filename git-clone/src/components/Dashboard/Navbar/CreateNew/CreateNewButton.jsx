@@ -4,7 +4,7 @@ import { ActionMenu, ActionList } from "@primer/react";
 
 const CreateNew = () => {
   return (
-    <>
+    <div className="navabar-createnew">
       <ActionMenu>
         <ActionMenu.Button
           sx={{
@@ -97,7 +97,7 @@ const CreateNew = () => {
           </ActionList>
         </ActionMenu.Overlay>
       </ActionMenu>
-    </>
+    </div>
   );
 };
 

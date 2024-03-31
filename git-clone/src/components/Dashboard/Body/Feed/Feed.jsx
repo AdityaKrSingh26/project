@@ -78,30 +78,25 @@ export default function Feed() {
       <div className="cards">
         <Box
           sx={{
+            margin: "0px auto",
             display: "flex",
-            height: "95vh",
+            flexWrap: "wrap",
+            // height: "95vh",
             overflowY: "auto",
             color: "white",
           }}
         >
-          <Box
-            sx={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              gap: "1em",
-              margin: "2vw",
-
-              height: "100%",
-            }}
-          >
-            <h1 className="HomeText">Home</h1>
+          <div className="home-result-container">
+            <h1 className="HomeText" style={{ margin: "0" }}>Home</h1>
             {/* Filter Button */}
             {repositories.slice(0, visibleRepos).map((repo, index) => (
-              <Box key={index} sx={{ width: 750 }}>
+              <Box key={index} >
                 <Card
+                  className="dashboard-card"
                   variant="outlined"
                   sx={{
+                    width: "100%",
+                    maxWidth: "600px",
                     marginBottom:
                       index === repositories.length - 1 ? "20px" : "0",
                   }}
@@ -137,22 +132,25 @@ export default function Feed() {
                 View More
               </Button>
             )}
-          </Box>
+          </div>
 
-          <Box
-            sx={{
-              flex: 1,
-              padding: "16px",
+          <div
+            style={{
+              // flex: 1,
+              padding: "20px",
               display: "flex",
               flexDirection: "column",
               gap: 2,
               overflowY: "auto",
-
-              marginTop: "4vw",
+              // marginTop: "4vw",
             }}
           >
             {/* Example GitHub-style side card */}
-            <Card sx={{ width: 300 }}>
+            <Card sx={{
+              width: "90%",
+              // maxWidth: "500px",
+              minWidth: "300px",
+            }}>
               <CardContent>
                 <Typography variant="h5" component="div">
                   GitHub Trending
@@ -165,7 +163,9 @@ export default function Feed() {
                 <Button size="small">View Trending</Button>
               </CardActions>
             </Card>
-            <Card sx={{ width: 300 }}>
+
+
+            <Card sx={{ width: "90%" }}>
               <CardContent>
                 <Typography variant="h5" component="div">
                   GitHub Trending
@@ -178,7 +178,7 @@ export default function Feed() {
                 <Button size="small">View Trending</Button>
               </CardActions>
             </Card>
-          </Box>
+          </div>
         </Box>
       </div>
     </>

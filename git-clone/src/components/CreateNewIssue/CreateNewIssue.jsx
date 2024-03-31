@@ -33,10 +33,10 @@ function CreateNewIssue() {
                         <AvatarIcon />
                         <div className="issue-input">
                             <h4>Title</h4>
-                            <TextInput
+                            <TextInput className='text-input-addIssue'
                                 sx={{
                                     marginBottom: '20px',
-                                    width: "700px",
+                                    // width: "90%",
                                     height: "30px",
                                     backgroundColor: "transparent", // Make the background transparent
                                     color: "whitesmoke", // Ensure the icon color is white

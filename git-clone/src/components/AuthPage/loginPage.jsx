@@ -1,10 +1,12 @@
 import React from "react";
 import { PageHeader } from "@primer/react/drafts";
 import logo from "./github-mark-white.svg";
-import "./loginPage.css";
 import { Box, Button } from "@primer/react";
 import axios from "axios";
 import { useState } from "react";
+
+import "./loginPage.css";
+
 
 function LoginPage() {
   const [username, setUsername] = useState("");

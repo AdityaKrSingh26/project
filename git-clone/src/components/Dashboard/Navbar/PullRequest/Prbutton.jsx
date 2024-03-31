@@ -4,7 +4,7 @@ import React from "react";
 
 const Prbutton = () => {
   return (
-    <div>
+    <div className="navbar-pr">
       <IconButton
         icon={GitPullRequestIcon}
         sx={{

@@ -6,7 +6,7 @@ import "./Issues.css";
 
 const Issues = () => {
   return (
-    <div>
+    <div className="navbar-issues">
       <Box>
         <IconButton
           icon={IssueOpenedIcon}

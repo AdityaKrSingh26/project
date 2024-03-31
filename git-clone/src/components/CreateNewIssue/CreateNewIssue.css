@@ -17,3 +17,38 @@
     background-color: #228736 !important;
     color: whitesmoke !important;
 }
+
+.text-input-addIssue {
+    width: 700px;
+}
+
+@media screen and (max-width: 1100px) {
+    .issue-detail-left {
+        margin-left: 64px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .text-input-addIssue {
+        width: 100%;
+        min-width: 500px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .text-input-addIssue {
+        width: 100%;
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .text-input-addIssue {
+        width: 100%;
+        min-width: 300px;
+    }
+
+    .Submit-issue {
+        margin-top: 80px;
+    }
+}

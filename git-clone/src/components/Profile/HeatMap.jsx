@@ -18,8 +18,8 @@ const HeatMapProfile = () => {
             <h4
                 style={{ color: 'gray' }}
             >Recent Contribution:</h4>
-            <HeatMap
-                style={{ width: '700px', height: '200px', color: 'white' }}
+            <HeatMap className='HeatMapProfile'
+                style={{ maxWidth: '700px', height: '200px', color: 'white' }}
                 value={value}
                 weekLabels={['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']}
                 startDate={new Date('2016/01/01')}
