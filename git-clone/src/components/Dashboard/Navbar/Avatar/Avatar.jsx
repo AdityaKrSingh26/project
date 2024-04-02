@@ -20,6 +20,7 @@ import {
   BeakerIcon,
   PeopleIcon,
   CommentDiscussionIcon,
+  SignOutIcon
 } from '@primer/octicons-react';
 
 import "./Avatar.css";
@@ -58,7 +59,7 @@ export default function AvatarIcon() {
   const list = () => (
     <div style={
       {
-        paddingTop: "10px",
+        // paddingTop: "10px",
         backgroundColor: '#171b23',
         minHeight: "100vh"
       }
@@ -153,7 +154,10 @@ export default function AvatarIcon() {
 
         <NavList.Divider sx={{ color: 'white', paddingLeft: "10px" }} />
 
-
+        <NavList.Item sx={{ color: 'white', paddingLeft: "10px" }}>
+          <SignOutIcon />
+          <span className="avatar-sidebar-title">Signout</span>
+        </NavList.Item>
 
 
       </NavList>

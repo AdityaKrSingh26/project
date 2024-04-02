@@ -1,0 +1,12 @@
+.pr-search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* justify-content: start; */
+    align-items: start;
+    /* flex-wrap: wrap-reverse; */
+}
+
+.filter-and-search {
+    width: 100%;
+}

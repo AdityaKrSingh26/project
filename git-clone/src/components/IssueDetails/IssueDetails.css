@@ -80,3 +80,25 @@
     margin: 20px 10px;
     font-size: small;
 }
+
+@media screen and (max-width: 700px) {
+    .text-box {
+        width: 500px
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .text-box {
+        width: 400px
+    }
+
+    .issue-detail {
+        flex-wrap: wrap-reverse;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .text-box {
+        width: 300px
+    }
+}

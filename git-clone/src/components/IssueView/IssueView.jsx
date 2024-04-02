@@ -30,14 +30,14 @@ function IssueView() {
 
       <div className="pull-request-wrapper">
         <div className="pr-search-section">
-          <div className="filter-and-search">
+          <div className="filter-and-search" style={{ width: "100%" }}>
             <button className="repo-search-btn">
               <p>Filter</p>
               <ChevronDownIcon />
             </button>
             <TextInput
               sx={{
-                width: "500px",
+                width: "90%",
                 height: "30px",
                 backgroundColor: "transparent", // Make the background transparent
                 color: "whitesmoke", // Ensure the icon color is white
