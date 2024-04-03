@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SideContent.css"; // Import your CSS file
 import AvatarIcon from "../../Navbar/Avatar/Avatar";
 import { ActionMenu, ActionList, Avatar, IconButton } from "@primer/react";
@@ -11,14 +11,37 @@ import {
 import Searchbar from "../../Navbar/Searchbar/Searchbar";
 import { Button } from "@mui/material";
 
-const Sidebar = ({ repositories = [] }) => {
+const Sidebar = () => {
+  const [repositories, setRepositories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [visibleRepos, setVisibleRepos] = useState(7); // Initially show 7 repositories
   const [showLess, setShowLess] = useState(false); // Initially show all repositories
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const fetchRepositories = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://backendgit-1.onrender.com/repos");
+        const data = await response.json();
+        setRepositories(data);
+      } catch (error) {
+        console.error("Failed to fetch repositories:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRepositories();
+  }, []);
+
+  const filteredRepositories = repositories.filter((repo) =>
+    repo.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const loadMoreRepos = () => {
     setVisibleRepos((prevVisibleRepos) => prevVisibleRepos + 15);
     setShowLess(true);
-    // Increase by 5 each time
   };
 
   const showLessRepos = () => {
@@ -50,7 +73,7 @@ const Sidebar = ({ repositories = [] }) => {
                 },
               }}
             >
-              John Doe
+              Test user
             </ActionMenu.Button>
             <ActionMenu.Overlay width="medium">
               <ActionList
@@ -59,73 +82,7 @@ const Sidebar = ({ repositories = [] }) => {
                   color: "white", // Ensure the text color is white
                 }}
               >
-                <ActionList.Item
-                  onSelect={() => alert("Copy link clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  New Repository
-                </ActionList.Item>
-                <ActionList.Item
-                  onSelect={() => alert("Quote reply clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  Import Repository
-                </ActionList.Item>
-                <ActionList.Divider />
-                <ActionList.Item
-                  onSelect={() => alert("Edit comment clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  New Codespace
-                </ActionList.Item>
-                <ActionList.Item
-                  onSelect={() => alert("Edit comment clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  New Gist
-                </ActionList.Item>
-                <ActionList.Divider />
-                <ActionList.Item
-                  onSelect={() => alert("Edit comment clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  New organization
-                </ActionList.Item>
-                <ActionList.Item
-                  onSelect={() => alert("Edit comment clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  New Project
-                </ActionList.Item>
-                <ActionList.Divider />
-                <ActionList.Item
-                  variant="danger"
-                  onSelect={() => alert("Delete file clicked")}
-                  sx={{
-                    backgroundColor: "rgb(40,44,52)", // Set the background to black
-                    color: "white", // Ensure the text color is white
-                  }}
-                >
-                  Delete file
-                </ActionList.Item>
+                {/* ActionList items */}
               </ActionList>
             </ActionMenu.Overlay>
           </ActionMenu>
@@ -134,7 +91,11 @@ const Sidebar = ({ repositories = [] }) => {
 
       <b className="sidebar-heading">Recent </b>
       <div className="recent">
-        <Searchbar />
+        <Searchbar
+          placeholder="Search repositories..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <IconButton
           icon={BookmarkSlashFillIcon}
           size={"medium"}
@@ -143,22 +104,24 @@ const Sidebar = ({ repositories = [] }) => {
       </div>
 
       <ul className="repo-list">
-        {repositories.slice(0, visibleRepos).map((repo, index) => (
+        {filteredRepositories.slice(0, visibleRepos).map((repo, index) => (
           <li key={index}>
-            <Avatar src={repo.thumbnail} size={15} />
-
+            <Avatar
+              src={"https://avatars.githubusercontent.com/u/92997159?v=4"}
+              size={15}
+            />
             <a
               href={repo.url}
               target="_blank"
               rel="noopener noreferrer"
               className="repoTitle"
             >
-              {repo.title}
+              {repo.name}
             </a>
           </li>
         ))}
       </ul>
-      {repositories.length > visibleRepos && !showLess && (
+      {filteredRepositories.length > visibleRepos && !showLess && (
         <Button onClick={loadMoreRepos}>Load More</Button>
       )}
       {showLess && <Button onClick={showLessRepos}>See Less</Button>}

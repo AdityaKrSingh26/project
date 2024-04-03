@@ -6,29 +6,44 @@ import { Box, Button } from "@primer/react";
 import axios from "axios";
 import { useState } from "react";
 
-function SignUpPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+
+function SignUpPage() {
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState(""); // Added state for email
+  const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
+  const { currentUser, setCurrentUser } = useAuth();
+
+
+
+  const handleSignUp = async (e) => {
+    // Renamed from handleLogin to handleSignUp
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/signUp", {
+      setLoader(true);
+
+      const res = await axios.post("https://backendgit-1.onrender.com/signup", {
         username,
+        email,
         password,
       });
       const token = res.data.token;
-      // Save the token in local storage or cookies
+      // Save the token and user ID in local storage
       localStorage.setItem("token", token);
-      // Redirect the user or update the UI
-      // For example, redirect to a dashboard or home page
-      window.location.href = "/dashboard"; // Adjust the path as needed
+      localStorage.setItem("userId", res.data.userId); // Store the user ID
+      setLoader(false);
+      setCurrentUser(res.data.userId);
+
+      window.location.href = "/"; // Adjust the path as needed
     } catch (err) {
       console.error(err);
-      // Handle errors, e.g., show an error message to the user
-      alert("Login failed. Please check your username and password.");
+      alert(err.message);
     }
   };
+
+
   return (
     <div className="login-wrapper">
       <div className="login-logo-container">
@@ -44,36 +59,64 @@ function SignUpPage() {
           >
             <PageHeader>
               <PageHeader.TitleArea variant="large">
-                <PageHeader.Title>Sign In</PageHeader.Title>
+                <PageHeader.Title>Sign Up</PageHeader.Title>
               </PageHeader.TitleArea>
             </PageHeader>
           </Box>
         </div>
         <div className="login-box">
           <div>
-            <label class="label">Email address</label>
+            <label className="label">Email</label>
             <input
-              autocomplete="off"
-              name="Email"
-              id="Email"
-              class="input"
+              autoComplete="off"
+              name="username"
+              id="username"
+              className="input"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label">Username</label>
+            <input
+              autoComplete="off"
+              name="email"
+              id="email"
+              className="input"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="div">
-            <label class="label">Password</label>
+            <label className="label">Password</label>
             <input
-              autocomplete="off"
-              name="Email"
-              id="Email"
-              class="input"
+              autoComplete="off"
+              name="password"
+              id="password"
+              className="input"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <Button variant="primary" sx={{ width: 250 }} onClick={handleLogin}>
-            Sign Up
+          <Button
+            variant="primary"
+            sx={{ width: 250 }}
+            onClick={handleSignUp}
+            disabled={loader}
+          >
+            {loader ? "Loading..." : "Sign Up"}
           </Button>
+
+          <div className="pass-box">
+            <p>
+              <a href="/signin">Already have an account? Sign in</a>
+            </p>
+          </div>
+
         </div>
       </div>
     </div>

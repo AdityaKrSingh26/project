@@ -9,28 +9,38 @@ import "./loginPage.css";
 
 
 function LoginPage() {
+  useEffect(() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setCurrentUser(null);
+  }, []);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
+  const { currentUser, setCurrentUser } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/login", {
+      setLoader(true);
+      const res = await axios.post("https://backendgit-1.onrender.com/login", {
         username,
         password,
       });
       const token = res.data.token;
-      // Save the token in local storage or cookies
+      // Save the token and user ID in local storage
       localStorage.setItem("token", token);
-      // Redirect the user or update the UI
-      // For example, redirect to a dashboard or home page
-      window.location.href = "/dashboard"; // Adjust the path as needed
+      localStorage.setItem("userId", res.data.userId); // Store the user ID
+      setLoader(false);
+      setCurrentUser(res.data.userId);
+
+      window.location.href = "/"; // Adjust the path as needed
     } catch (err) {
       console.error(err);
-      // Handle errors, e.g., show an error message to the user
       alert("Login failed. Please check your username and password.");
     }
   };
+
   return (
     <div className="login-wrapper">
       <div className="login-logo-container">
@@ -60,27 +70,36 @@ function LoginPage() {
               id="Email"
               class="input"
               type="email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} // Update the username state on change
             />
           </div>
           <div className="div">
             <label class="label">Password</label>
             <input
               autocomplete="off"
-              name="Email"
-              id="Email"
+              name="Password"
+              id="Password"
               class="input"
               type="password"
+              value={password} // Bind the password state to the input value
+              onChange={(e) => setPassword(e.target.value)} // Update the password state on change
             />
           </div>
 
-          <Button variant="primary" sx={{ width: 250 }} onClick={handleLogin}>
-            Sign In
+          <Button
+            variant="primary"
+            sx={{ width: 250 }}
+            onClick={handleLogin}
+            disabled={loader}
+          >
+            {loader ? "Loading..." : "Sign In"}
           </Button>
         </div>
         <div className="pass-box">
-          <p>
+          {/* <p>
             <a href="/signin">Sign in with a passkey</a>
-          </p>
+          </p> */}
           <p>
             New to GitHub? <a href="/signup">Create an account</a>
           </p>

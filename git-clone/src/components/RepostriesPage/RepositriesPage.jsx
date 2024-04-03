@@ -1,13 +1,40 @@
 import React from 'react'
-
 import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
 import { UnderlineNav } from '@primer/react'
-import { BookIcon, RepoIcon, PivotColumnIcon, ChevronDownIcon, PackageIcon, StarIcon, EyeIcon } from '@primer/octicons-react';
+import {
+    BookIcon,
+    RepoIcon,
+    PivotColumnIcon,
+    ChevronDownIcon,
+    PackageIcon,
+    StarIcon,
+    EyeIcon
+} from '@primer/octicons-react';
 import { TextInput } from '@primer/react'
 
 import "./RepositoriesPage.css"
 
 function RepositriesPage() {
+
+    const [repos, setRepos] = useState([]); // State to store fetched repositories
+
+    useEffect(() => {
+        const fetchRepos = async () => {
+            try {
+                const response = await axios.get(
+                    "https://backendgit-1.onrender.com/repos"
+                );
+                setRepos(response.data); // Set the fetched repositories
+            } catch (error) {
+                console.error("Failed to fetch repositories:", error);
+            }
+        };
+
+        fetchRepos();
+    }, []); // Empty dependency array means this effect runs once on mount
+
+
+
     return (
         <div>
             <Navbar />
@@ -39,7 +66,6 @@ function RepositriesPage() {
                     Repositories
                 </UnderlineNav.Item>
                 <UnderlineNav.Item
-
                     icon={PivotColumnIcon}
                     sx={{
                         backgroundColor: "transparent", // Make the background transparent
@@ -52,7 +78,6 @@ function RepositriesPage() {
                     Projects
                 </UnderlineNav.Item>
                 <UnderlineNav.Item
-
                     icon={PackageIcon}
                     sx={{
                         backgroundColor: "transparent", // Make the background transparent
@@ -117,109 +142,39 @@ function RepositriesPage() {
                     </div>
 
 
-                    <div className="repo-item-wrapper">
-                        <div className="repo-info">
-                            <h3 className="repository-name">Repo Name</h3>
-                            <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum cupiditate incidunt necessitatibus assumenda culpa praesentium reiciendis nostrum velit tenetur repellat!</p>
+                    {repos.map((repo) => (
+                        <div key={repo._id} className="repo-item-wrapper">
+                            <div className="repo-info">
+                                <h3 className="repository-name">{repo.name}</h3>
+                                <p className="description">{repo.content}</p>
 
-                            <div className="repo-info-section">
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
+                                <div className="repo-info-section">
+                                    <div className="language-item">
+                                        <div
+                                            style={{
+                                                backgroundColor: "green",
+                                                width: "10px",
+                                                height: "10px",
+                                                borderRadius: "50%",
+                                            }}
+                                        ></div>
+                                        <p>HTML</p>
                                     </div>
-                                    <p>HTML</p>
-                                </div>
 
-                                <div className="description">
-                                    Updated 13 days ago
+                                    <div className="description">
+                                        Updated {/* Adjust based on your API's response */}
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
-
-                        <div className="repo-acftions">
-                            <button className='repo-star-btn'>
-                                <StarIcon />
-                                <p>Star</p>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="repo-line-break"></div>
-
-
-                    <div className="repo-item-wrapper">
-                        <div className="repo-info">
-                            <h3 className="repository-name">Repo Name</h3>
-                            <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum cupiditate incidunt necessitatibus assumenda culpa praesentium reiciendis nostrum velit tenetur repellat!</p>
-
-                            <div className="repo-info-section">
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
-                                    </div>
-                                    <p>HTML</p>
-                                </div>
-
-                                <div className="description">
-                                    Updated 13 days ago
-                                </div>
+                            <div className="repo-acftions">
+                                <button className="repo-star-btn">
+                                    <StarIcon />
+                                    <p>Star</p>
+                                </button>
                             </div>
-
                         </div>
-
-                        <div className="repo-acftions">
-                            <button className='repo-star-btn'>
-                                <StarIcon />
-                                <p>Star</p>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="repo-line-break"></div>
-
-                    <div className="repo-item-wrapper">
-                        <div className="repo-info">
-                            <h3 className="repository-name">Repo Name</h3>
-                            <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum cupiditate incidunt necessitatibus assumenda culpa praesentium reiciendis nostrum velit tenetur repellat!</p>
-
-                            <div className="repo-info-section">
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
-                                    </div>
-                                    <p>HTML</p>
-                                </div>
-
-                                <div className="description">
-                                    Updated 13 days ago
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div className="repo-acftions">
-                            <button className='repo-star-btn'>
-                                <StarIcon />
-                                <p>Star</p>
-                            </button>
-                        </div>
-                    </div>
-                    {/* <div className="repo-line-break"></div> */}
-
+                    ))}
 
                 </div>
             </div>

@@ -67,11 +67,31 @@ const repositories = [
 ];
 
 export default function Feed() {
+  const [repositories, setRepositories] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [visibleRepos, setVisibleRepos] = React.useState(4);
 
   const handleViewMore = () => {
     setVisibleRepos(repositories.length);
   };
+
+  React.useEffect(() => {
+    const fetchRepositories = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://backendgit-1.onrender.com/repos");
+        const data = await response.json();
+        setRepositories(data);
+      } catch (error) {
+        console.error("Failed to fetch repositories:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRepositories();
+  }, []);
+
 
   return (
     <>
@@ -89,7 +109,9 @@ export default function Feed() {
           <div className="home-result-container">
             <h1 className="HomeText" style={{ margin: "0" }}>Home</h1>
             {/* Filter Button */}
-            {repositories.slice(0, visibleRepos).map((repo, index) => (
+            {isLoading ? (
+              <Typography variant="body1" > Loading repositories...</Typography>
+            ) : (repositories.slice(0, visibleRepos).map((repo, index) => (
               <Box key={index} >
                 <Card
                   className="dashboard-card"
@@ -103,10 +125,10 @@ export default function Feed() {
                 >
                   <CardContent>
                     <Typography variant="h5" component="div">
-                      {repo.title}
+                      {repo.name}
                     </Typography>
                     <Typography variant="body2" color="whitesmoke">
-                      {repo.description}
+                      {repo.content}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -121,7 +143,11 @@ export default function Feed() {
                   </CardActions>
                 </Card>
               </Box>
-            ))}
+            )
+            )
+            )
+            }
+
             {visibleRepos < repositories.length && (
               <Button
                 variant="contained"

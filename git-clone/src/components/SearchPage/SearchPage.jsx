@@ -3,18 +3,42 @@ import { useState, useEffect } from 'react';
 import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
 import Drawer from '@mui/material/Drawer';
 import FilterMenu from './FilterMenu';
-import { LinkIcon, RepoIcon } from '@primer/octicons-react';
-
+import {
+    BookIcon,
+    PlusCircleIcon,
+    LinkIcon,
+    RepoIcon,
+    CodeIcon,
+    BugIcon,
+    GitPullRequestIcon,
+} from "@primer/octicons-react";
 import "./SearchPage.css"
 
 
 function SearchPage() {
-
     const [open, setOpen] = useState(false);
+    const [repos, setRepos] = useState([]); // State to store fetched repositories
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
+
+    useEffect(() => {
+        const fetchRepos = async () => {
+            try {
+                const response = await axios.get(
+                    "https://backendgit-1.onrender.com/repos"
+                );
+                setRepos(response.data); // Assuming the API returns an array of repositories
+            } catch (error) {
+                console.error("Failed to fetch repositories:", error);
+            }
+        };
+
+        fetchRepos();
+    }, []); // Empty dependency array means this effect runs once on mount
+
+
 
     return (
         <div className='search-page-wrapper'>
@@ -37,82 +61,28 @@ function SearchPage() {
 
                 <div className="search-result-wrapper">
                     <div className="search-result-section">
-                        <div className="search-result">
-                            <div className="repo-name">
-                                <h5>Repositry Name</h5>
-                            </div>
-                            <div className="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, dolores.</p>
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
+                        {repos.map((repo) => (
+                            <div className="search-result">
+                                <div className="repo-name">
+                                    <h5>{repo.name}</h5>
+                                </div>
+                                <div className="description">
+                                    <p>{repo.content}</p>
+                                    <div className="language-item">
+                                        <div
+                                            style={{
+                                                backgroundColor: "green", // Adjust based on the language
+                                                width: "10px",
+                                                height: "10px",
+                                                borderRadius: "50%",
+                                            }}
+                                        ></div>
+                                        <p>HTML</p>{" "}
+                                        {/* Assuming each repo has a 'language' property */}
                                     </div>
-                                    <p>HTML</p>
                                 </div>
                             </div>
-                        </div>
-                        <div className="search-result">
-                            <div className="repo-name">
-                                <h5>Repositry Name</h5>
-                            </div>
-                            <div className="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, dolores.</p>
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
-                                    </div>
-                                    <p>HTML</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="search-result">
-                            <div className="repo-name">
-                                <h5>Repositry Name</h5>
-                            </div>
-                            <div className="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, dolores.</p>
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
-                                    </div>
-                                    <p>HTML</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="search-result">
-                            <div className="repo-name">
-                                <h5>Repositry Name</h5>
-                            </div>
-                            <div className="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, dolores.</p>
-                                <div className="language-item">
-                                    <div
-                                        style={{
-                                            backgroundColor: 'green',
-                                            width: '10px',
-                                            height: '10px',
-                                            borderRadius: '50%'
-                                        }}>
-                                    </div>
-                                    <p>HTML</p>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
 
                     <div className="right-section">
