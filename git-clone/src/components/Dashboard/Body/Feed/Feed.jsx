@@ -96,13 +96,13 @@ export default function Feed() {
   return (
     <>
       <div className="cards">
-        <Box
-          sx={{
+        <div
+          style={{
             margin: "0px auto",
             display: "flex",
             flexWrap: "wrap",
             // height: "95vh",
-            overflowY: "auto",
+            // overflowY: "auto",
             color: "white",
           }}
         >
@@ -117,8 +117,6 @@ export default function Feed() {
                   className="dashboard-card"
                   variant="outlined"
                   sx={{
-                    width: "100%",
-                    maxWidth: "600px",
                     marginBottom:
                       index === repositories.length - 1 ? "20px" : "0",
                   }}
@@ -143,34 +141,23 @@ export default function Feed() {
                   </CardActions>
                 </Card>
               </Box>
-            )
-            )
-            )
-            }
+            )))}
 
             {visibleRepos < repositories.length && (
               <Button
                 variant="contained"
                 color="primary"
                 onClick={handleViewMore}
-                sx={{ marginTop: 2 }}
+                sx={{
+                  width: "90%",
+                }}
               >
                 View More
               </Button>
             )}
           </div>
 
-          <div
-            style={{
-              // flex: 1,
-              padding: "20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              overflowY: "auto",
-              // marginTop: "4vw",
-            }}
-          >
+          <div className="side-content-left-container">
             {/* Example GitHub-style side card */}
             <Card sx={{
               width: "90%",
@@ -205,7 +192,7 @@ export default function Feed() {
               </CardActions>
             </Card>
           </div>
-        </Box>
+        </div>
       </div>
     </>
   );

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./SideContent.css"; // Import your CSS file
-import AvatarIcon from "../../Navbar/Avatar/Avatar";
 import { ActionMenu, ActionList, Avatar, IconButton } from "@primer/react";
-import {
-  BookIcon,
-  BookmarkFillIcon,
-  BookmarkSlashFillIcon,
-  RepoPushIcon,
-} from "@primer/octicons-react";
+import { BookmarkSlashFillIcon } from "@primer/octicons-react";
 import Searchbar from "../../Navbar/Searchbar/Searchbar";
 import { Button } from "@mui/material";
+
+import "./SideContent.css"; // Import your CSS file
+
 
 const Sidebar = () => {
   const [repositories, setRepositories] = useState([]);

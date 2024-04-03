@@ -1,10 +1,11 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { PageHeader } from "@primer/react/drafts";
 import logo from "./github-mark-white.svg";
 import "./loginPage.css";
 import { Box, Button } from "@primer/react";
 import axios from "axios";
-import { useState } from "react";
+import { useAuth } from "../../authContext";
 
 
 
@@ -103,20 +104,19 @@ function SignUpPage() {
           </div>
 
           <Button
+            className="signup-button"
             variant="primary"
-            sx={{ width: 250 }}
+            // sx={{ width: 250 }}
             onClick={handleSignUp}
             disabled={loader}
           >
             {loader ? "Loading..." : "Sign Up"}
           </Button>
-
-          <div className="pass-box">
-            <p>
-              <a href="/signin">Already have an account? Sign in</a>
-            </p>
-          </div>
-
+        </div>
+        <div className="pass-box">
+          <p>
+            <a href="/signin">Already have an account? Sign in</a>
+          </p>
         </div>
       </div>
     </div>

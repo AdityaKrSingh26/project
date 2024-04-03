@@ -20,9 +20,6 @@
   flex: 1;
 }
 
-.feed {
-  flex: 3;
-}
 
 /* Media query for mobile devices */
 /* @media (max-width: 1000px) {

@@ -47,3 +47,14 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media screen and (max-width: 400px) {
+  .name {
+    display: none;
+  }
+
+  #searchBar {
+    width: 10px;
+  }
+
+}
