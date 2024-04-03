@@ -1,7 +1,7 @@
 /* Sidebar.css */
 .side-bar {
   height: 100vh;
-  width: 20vw;
+  width: 300px;
   background-color: #0c1116;
   display: flex;
   flex-direction: column;
@@ -22,15 +22,16 @@
 
 .side-bar-options {
   width: 100%;
-  height: calc(
-    100% - 70px
-  ); /* Adjusted to account for the title and its margin */
+  height: calc(100% - 70px);
+  /* Adjusted to account for the title and its margin */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start; /* Align items to the start to mimic GitHub's sidebar */
+  align-items: flex-start;
+  /* Align items to the start to mimic GitHub's sidebar */
   gap: 20px;
-  font-size: 16px; /* Adjusted for better readability */
+  font-size: 16px;
+  /* Adjusted for better readability */
   font-weight: 500;
 }
 
@@ -80,27 +81,35 @@
 .pdf-view-btn:hover {
   background-color: #d4d4d4;
 }
+
 /* Sidebar.css */
 .side-bar ul li {
   display: flex;
-  align-items: center; /* Align items vertically in the center */
-  gap: 10px; /* Add space between the icon and text */
-  padding: 10px 5px; /* Add padding to the top and bottom of each list item */
+  align-items: center;
+  /* Align items vertically in the center */
+  gap: 10px;
+  /* Add space between the icon and text */
+  padding: 10px 5px;
+  /* Add padding to the top and bottom of each list item */
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .side-bar ul li:hover {
-  background-color: #676767; /* Add a hover effect to indicate interactivity */
+  background-color: #676767;
+  /* Add a hover effect to indicate interactivity */
 }
 
 /* Ensure icons are aligned with the text */
 .side-bar ul li svg {
-  height: 24px; /* Adjust the size of the icons as needed */
-  width: 24px; /* Adjust the size of the icons as needed */
+  height: 24px;
+  /* Adjust the size of the icons as needed */
+  width: 24px;
+  /* Adjust the size of the icons as needed */
 }
 
 /* Optional: Add some padding to the text for better spacing */
 .side-bar ul li span {
-  padding-left: 10px; /* Adjust as needed */
+  padding-left: 10px;
+  /* Adjust as needed */
 }

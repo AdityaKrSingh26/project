@@ -56,3 +56,19 @@
 /* #chart {
     width: 500px;
 } */
+
+@media screen and (max-width: 768px) {
+    .pr-list-section {
+        height: 500px;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .pr-btn-section {
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: start;
+    }
+
+}

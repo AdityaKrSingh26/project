@@ -1,9 +1,11 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { PageHeader } from "@primer/react/drafts";
 import logo from "./github-mark-white.svg";
 import { Box, Button } from "@primer/react";
 import axios from "axios";
-import { useState } from "react";
+import { useAuth } from "../../authContext";
+
 
 import "./loginPage.css";
 
@@ -88,8 +90,9 @@ function LoginPage() {
           </div>
 
           <Button
+            className="signup-button"
             variant="primary"
-            sx={{ width: 250 }}
+            // sx={{ width: 250 }}
             onClick={handleLogin}
             disabled={loader}
           >

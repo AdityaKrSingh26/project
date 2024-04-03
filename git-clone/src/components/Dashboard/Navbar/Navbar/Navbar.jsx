@@ -34,7 +34,7 @@ const Navbar = (props) => {
       </div>
 
       <div className="rightnav">
-        <Searchbar />
+          <Searchbar />
           <div className="verticalLine">|</div>
           <div className="icons">
             <CreateNew />
