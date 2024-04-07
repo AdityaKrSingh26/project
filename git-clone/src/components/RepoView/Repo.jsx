@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   PageLayout,
   Button,
@@ -19,22 +20,17 @@ import { PageHeader } from "@primer/react/drafts";
 import {
   BookIcon,
   CheckIcon,
-  CommitIcon,
   EyeIcon,
-  FeedHeartIcon,
   FileDirectoryFillIcon,
   FileIcon,
-  GitPullRequestIcon,
   GraphIcon,
   HistoryIcon,
-  ReadIcon,
   StarIcon,
 } from "@primer/octicons-react";
-import { Table } from "@primer/react/lib-esm/DataTable/Table";
 import "./Repo.css";
-import CreateNew from "../Dashboard/Navbar/CreateNew/CreateNewButton";
 
 const Repo = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [componentCount, setComponentCount] = useState(10);
 
@@ -150,13 +146,13 @@ const Repo = () => {
         <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
           Code
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
           Issues
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
           Pull Requests
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>

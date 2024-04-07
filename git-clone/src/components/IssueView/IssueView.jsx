@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput } from "@primer/react";
@@ -12,18 +13,23 @@ import {
 import "./IssueView.css";
 
 function IssueView() {
+  const navigate = useNavigate();
+
+
   return (
     <div>
       <Navbar />
       <UnderlineNav aria-label="Repository">
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>Code</UnderlineNav.Item>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoview')}>
+          Code
+        </UnderlineNav.Item>
         <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
           Issues
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
           Pull Requests
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>
@@ -58,7 +64,7 @@ function IssueView() {
               <MilestoneIcon />
               <p>Milestone</p>
             </button>
-            <button className="new-pr-btn">
+            <button className="new-pr-btn" onClick={() => navigate('/addIssue')}>
               <p>New Issue</p>
               {/* <ChevronDownIcon /> */}
             </button>

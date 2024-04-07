@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput } from "@primer/react";
 
@@ -7,20 +8,22 @@ import AvatarIcon from '../Dashboard/Navbar/Avatar/Avatar';
 
 
 function IssueDetails() {
+    const navigate = useNavigate();
+
     return (
         <div>
             <Navbar />
             <UnderlineNav aria-label="Repository">
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoview')}>
                     Code
                 </UnderlineNav.Item>
-                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
                     Issues
                 </UnderlineNav.Item>
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
                     Pull Requests
                 </UnderlineNav.Item>
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
                     Settings
                 </UnderlineNav.Item>
             </UnderlineNav>
@@ -29,7 +32,6 @@ function IssueDetails() {
                 <div className="issue-text-info">
                     <div>
                         <h1>Issue Title</h1>
-                        {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, explicabo!</p> */}
                     </div>
 
                     <div className="issue-status-section">
@@ -41,7 +43,7 @@ function IssueDetails() {
                 </div>
 
                 <div className="new-issue">
-                    <button>New Issue</button>
+                    <button onClick={() => navigate('/addIssue')}>New Issue</button>
                 </div>
             </div>
 

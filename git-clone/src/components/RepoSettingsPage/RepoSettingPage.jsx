@@ -1,26 +1,28 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput } from "@primer/react";
+import SettingsSidebar from './SettingsSidebar';
 
 import './RepoSettingPage.css'
-import SettingsSidebar from './SettingsSidebar';
-import { Divider } from '@mui/material';
 
 function RepoSettingPage() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Navbar />
       <UnderlineNav aria-label="Repository">
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoview')}>
           Code
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
           Issues
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
           Pull Requests
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} aria-current="page" >
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} aria-current="page" onClick={() => navigate('/repoSettings')}>
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>

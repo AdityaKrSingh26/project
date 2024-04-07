@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import "./Profile.css"
 import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
@@ -9,6 +10,7 @@ import HeatMapProfile from './HeatMap';
 
 
 function Profile() {
+    const navigate = useNavigate()
     return (
         <>
             <Navbar />
@@ -28,7 +30,7 @@ function Profile() {
                     Overview
                 </UnderlineNav.Item>
                 <UnderlineNav.Item
-
+                    onClick={() => navigate('/repo')}
                     icon={RepoIcon}
                     sx={{
                         backgroundColor: "transparent", // Make the background transparent
@@ -91,22 +93,42 @@ function Profile() {
                 <div className="user-repo-section">
                     <div className="repo-card-wrapper">
                         <div className="repo">
-                            <h3 className='repo-name'>Repo Name</h3>
+                            <h3
+                                className='repo-name'
+                                onClick={() => navigate('/repoview')}
+                            >
+                                Repo Name
+                            </h3>
                             <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
                             <p className='language'>Language</p>
                         </div>
                         <div className="repo">
-                            <h3 className='repo-name'>Repo Name</h3>
+                            <h3
+                                className='repo-name'
+                                onClick={() => navigate('/repoview')}
+                            >
+                                Repo Name
+                            </h3>
                             <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
                             <p className='language'>Language</p>
                         </div>
                         <div className="repo">
-                            <h3 className='repo-name'>Repo Name</h3>
+                            <h3
+                                className='repo-name'
+                                onClick={() => navigate('/repoview')}
+                            >
+                                Repo Name
+                            </h3>
                             <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
                             <p className='language'>Language</p>
                         </div>
                         <div className="repo">
-                            <h3 className='repo-name'>Repo Name</h3>
+                            <h3
+                                className='repo-name'
+                                onClick={() => navigate('/repoview')}
+                            >
+                                Repo Name
+                            </h3>
                             <p className='description'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsa magni, error, quasi distinctio laudantium aperiam ducimus sit eligendi aut labore tempore </p>
                             <p className='language'>Language</p>
                         </div>

@@ -75,6 +75,7 @@
 }
 
 .repo-name {
+    cursor: pointer;
     color: #408ced;
     font-size: 20px;
 }

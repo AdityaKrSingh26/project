@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput, Button } from "@primer/react";
 
@@ -9,20 +9,22 @@ import AvatarIcon from '../Dashboard/Navbar/Avatar/Avatar';
 
 
 function CreateNewIssue() {
+    const navigate = useNavigate();
+
     return (
         <div>
             <Navbar />
             <UnderlineNav aria-label="Repository">
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoview')}>
                     Code
                 </UnderlineNav.Item>
-                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
                     Issues
                 </UnderlineNav.Item>
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
                     Pull Requests
                 </UnderlineNav.Item>
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
                     Settings
                 </UnderlineNav.Item>
             </UnderlineNav>
@@ -49,7 +51,7 @@ function CreateNewIssue() {
                             <div className="editor-container">
                                 <Editor />
                             </div>
-                            <Button className='Submit-issue'>Submit New Issue</Button>
+                            <Button className='Submit-issue' onClick={() => navigate('/issueDetails')}>Submit New Issue</Button>
                         </div>
 
                     </div>
