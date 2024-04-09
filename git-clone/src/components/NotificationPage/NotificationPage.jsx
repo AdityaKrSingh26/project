@@ -1,9 +1,12 @@
 import React from 'react'
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
-import { BookmarkIcon, CheckCircleFillIcon, InboxIcon, ChevronDownIcon } from '@primer/octicons-react';
-import { UnderlineNav, TextInput } from "@primer/react";
+import { ChevronDownIcon } from '@primer/octicons-react';
+import { TextInput } from "@primer/react";
 
 import './NotificationPage.css'
+import NotificationSidebar from './NotificationSidebar';
+import SideDrawer from "./SideDrawer"
+
 
 function NotificationPage() {
     return (
@@ -14,63 +17,29 @@ function NotificationPage() {
 
             <div className="notification-wrapper">
 
-                <div className="left-notifiaction-section">
-
-                    <div className="btn-grp">
-                        <button className='inbox'>
-                            <InboxIcon />
-                            <p>Inbox</p>
-                        </button>
-                        <button className='saved'>
-                            <BookmarkIcon />
-                            <p>Saved</p>
-                        </button>
-                        <button className='done'>
-                            <CheckCircleFillIcon />
-                            <p>Done</p>
-                        </button>
-                    </div>
-                    <div className="line-break">
-                    </div>
-
-                    <div className="notification-filter-section">
-                        <div className="filter-text">
-                            <p>Filter</p>
-                        </div>
-
-                        <div className="filter-btn-grp">
-                            <button className='filter-btn'>
-                                <p>Assigned</p>
-                            </button>
-                            <button className='filter-btn'>
-                                <p>Participating</p>
-                            </button>
-                            <button className='filter-btn'>
-                                <p>Mentioned</p>
-                            </button>
-                            <button className='filter-btn'>
-                                <p>Team Mentioned</p>
-                            </button>
-                            <button className='filter-btn'>
-                                <p>Review Requested</p>
-                            </button>
-                        </div>
-                    </div>
+                <div className="left-sidebar-noti">
+                    <NotificationSidebar />
                 </div>
 
                 <div className="right-notification-section">
+
                     <div className="filter-and-search">
-                        <button className='repo-search-btn'>
+                        <div className="mobile-sidedrawer-btn">
+                            <SideDrawer />
+                        </div>
+
+                        <button className='repo-search-btn all-btn'>
                             <p>All</p>
                             {/* <ChevronDownIcon /> */}
                         </button>
-                        <button className='repo-search-btn'>
+                        <button className='repo-search-btn unread-btn'>
                             <p>Unread</p>
                             {/* <ChevronDownIcon /> */}
                         </button>
                         <TextInput
+                            className='text-input-notification'
                             sx={{
-                                width: "500px",
+                                width: "100%",
                                 height: "30px",
                                 border: "0.5px solid gray",
                                 backgroundColor: "transparent", // Make the background transparent

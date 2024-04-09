@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 import Drawer from "@mui/material/Drawer";
 import { Avatar } from "@primer/react";
@@ -27,6 +28,7 @@ import "./Avatar.css";
 
 
 export default function AvatarIcon() {
+  const navigate = useNavigate();
 
   const AvatarImage = () => {
     return (
@@ -81,7 +83,7 @@ export default function AvatarIcon() {
         <NavList.Divider sx={{ color: 'white', paddingLeft: "10px" }} />
 
 
-        <NavList.Item sx={{ color: 'white', paddingLeft: "10px" }}>
+        <NavList.Item onClick={() => navigate("/profile")} sx={{ color: 'white', paddingLeft: "10px" }}>
           <PersonIcon />
           <span className="avatar-sidebar-title">Profile</span>
         </NavList.Item>

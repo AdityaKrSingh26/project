@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from 'react-router-dom';
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -67,6 +68,7 @@ const repositories = [
 ];
 
 export default function Feed() {
+  const navigate = useNavigate();
   const [repositories, setRepositories] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [visibleRepos, setVisibleRepos] = React.useState(4);
@@ -135,6 +137,7 @@ export default function Feed() {
                       href={repo.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => navigate("/repoview")}
                     >
                       View Repository
                     </Button>

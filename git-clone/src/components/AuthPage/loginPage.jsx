@@ -65,24 +65,24 @@ function LoginPage() {
         </div>
         <div className="login-box">
           <div>
-            <label class="label">Email address</label>
+            <label className="label">Email address</label>
             <input
               autocomplete="off"
               name="Email"
               id="Email"
-              class="input"
+              className="input"
               type="email"
               value={username}
               onChange={(e) => setUsername(e.target.value)} // Update the username state on change
             />
           </div>
           <div className="div">
-            <label class="label">Password</label>
+            <label className="label">Password</label>
             <input
               autocomplete="off"
               name="Password"
               id="Password"
-              class="input"
+              className="input"
               type="password"
               value={password} // Bind the password state to the input value
               onChange={(e) => setPassword(e.target.value)} // Update the password state on change

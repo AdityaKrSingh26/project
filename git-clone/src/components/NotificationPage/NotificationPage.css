@@ -1,4 +1,5 @@
 .notification-wrapper {
+    /* margin: 0px 20px; */
     color: grey;
     display: flex;
     gap: 20px;
@@ -81,7 +82,8 @@
 }
 
 .right-notification-section {
-    margin-top: 20px;
+    width: 100%;
+    margin: 20px;
 }
 
 .grp-by {
@@ -113,4 +115,31 @@
     /* padding: 10px 0px; */
     background-color: transparent;
     border-bottom: 0.5px solid gray;
+}
+
+@media screen and (max-width: 750px) {
+    .left-sidebar-noti {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .grp-by {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .all-btn,
+    .unread-btn {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 750px) {
+
+    .mobile-sidedrawer-btn {
+        display: none;
+    }
 }

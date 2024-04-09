@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 
@@ -16,6 +17,8 @@ import {
 } from "@primer/octicons-react";
 
 export default function TemporaryDrawer() {
+  const navigate = useNavigate();
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -43,7 +46,7 @@ export default function TemporaryDrawer() {
       <div className="side-bar-options">
         <div className="upper-options">
           <ul>
-            <li>
+            <li onClick={() => navigate('/')}>
               <HomeFillIcon sx={{ margin: "20px" }} />
               <span>Home</span>
             </li>

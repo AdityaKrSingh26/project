@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   PageLayout,
   Button,
@@ -19,22 +20,17 @@ import { PageHeader } from "@primer/react/drafts";
 import {
   BookIcon,
   CheckIcon,
-  CommitIcon,
   EyeIcon,
-  FeedHeartIcon,
   FileDirectoryFillIcon,
   FileIcon,
-  GitPullRequestIcon,
   GraphIcon,
   HistoryIcon,
-  ReadIcon,
   StarIcon,
 } from "@primer/octicons-react";
-import { Table } from "@primer/react/lib-esm/DataTable/Table";
 import "./Repo.css";
-import CreateNew from "../Dashboard/Navbar/CreateNew/CreateNewButton";
 
 const Repo = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [componentCount, setComponentCount] = useState(10);
 
@@ -146,20 +142,22 @@ const Repo = () => {
   return (
     <div>
       <Navbar />
+
       <UnderlineNav aria-label="Repository">
         <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
           Code
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
           Issues
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
           Pull Requests
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>
+
       {isLoading ? (
         <ProgressBar progress={50} aria-label="Upload test.png" />
       ) : (
@@ -167,6 +165,7 @@ const Repo = () => {
           <PageLayout>
             <PageLayout.Header
               sx={{
+                width: "100%",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -178,7 +177,6 @@ const Repo = () => {
                   <Header.Item>
                     <PageHeader>
                       <PageHeader.TitleArea variant={"large"}>
-                        <PageHeader.LeadingVisual></PageHeader.LeadingVisual>
                         <PageHeader.Title>Repository Title</PageHeader.Title>
                         <PageHeader.TrailingVisual>
                           <Label>Public</Label>
@@ -218,6 +216,7 @@ const Repo = () => {
                     </ActionMenu.Overlay>
                   </ActionMenu>
                 </div>
+
               </div>
             </PageLayout.Header>
 
@@ -237,21 +236,22 @@ const Repo = () => {
                   </div>
                   <div className="HeaderLeftText">
                     <Text sx={{ padding: "10px" }}>Prasun60</Text>
-                    <Text sx={{ paddings: "10px", marginLeft: "30px" }}>
-                      Latest Commit
-                      <Octicon
-                        icon={CheckIcon}
-                        size={32}
-                        color="success.fg"
-                        sx={{ mr: 2 }}
-                      />
-                    </Text>
+
                   </div>
                 </div>
+                <Text className="latest-commit" sx={{ paddings: "10px", marginLeft: "30px" }}>
+                  Latest Commit
+                  <Octicon
+                    icon={CheckIcon}
+                    size={32}
+                    color="success.fg"
+                    sx={{ mr: 2 }}
+                  />
+                </Text>
                 <div className="headerTableRight">
                   <Octicon icon={HistoryIcon} size={16} sx={{ mr: 2 }} />
 
-                  <Text sx={{ padding: "30px" }}>4 months ago</Text>
+                  <Text >4 months ago</Text>
                 </div>
               </div>
 
@@ -275,7 +275,7 @@ const Repo = () => {
             <PageLayout.Pane sx={{}}>
               <div className="About">
                 <Heading sx={{ color: "whitesmoke" }}>About</Heading>
-                <div class="f4 my-3 color-fg-muted text-italic">
+                <div className="f4 my-3 color-fg-muted text-italic">
                   No description, website, or topics provided.
                 </div>
                 <div className="AboutText">

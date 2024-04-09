@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
 import { UnderlineNav } from '@primer/react'
 import {
@@ -11,10 +13,10 @@ import {
     EyeIcon
 } from '@primer/octicons-react';
 import { TextInput } from '@primer/react'
-
 import "./RepositoriesPage.css"
 
 function RepositriesPage() {
+    const navigate = useNavigate()
 
     const [repos, setRepos] = useState([]); // State to store fetched repositories
 
@@ -41,6 +43,7 @@ function RepositriesPage() {
 
             <UnderlineNav aria-label="Repository">
                 <UnderlineNav.Item
+                    onClick={() => navigate('/profile')}
                     icon={BookIcon}
                     sx={{
                         backgroundColor: "transparent", // Make the background transparent
@@ -110,8 +113,6 @@ function RepositriesPage() {
                 </div>
 
 
-
-
                 <div className="repo-section">
 
                     <div className="repo-search-section">
@@ -145,7 +146,12 @@ function RepositriesPage() {
                     {repos.map((repo) => (
                         <div key={repo._id} className="repo-item-wrapper">
                             <div className="repo-info">
-                                <h3 className="repository-name">{repo.name}</h3>
+                                <h3
+                                    onClick={() => navigate('/repoview')}
+                                    className="repository-name"
+                                >
+                                    {repo.name}
+                                </h3>
                                 <p className="description">{repo.content}</p>
 
                                 <div className="repo-info-section">
