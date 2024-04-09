@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   PageLayout,
-  Button,
   Label,
   Avatar,
   Text,
   Octicon,
   Heading,
   CounterLabel,
-  IconButton,
 } from "@primer/react";
 import { ActionMenu, ActionList } from "@primer/react";
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
@@ -248,9 +246,11 @@ const Repo = () => {
                     sx={{ mr: 2 }}
                   />
                 </Text>
-                <div className="headerTableRight">
+                <div
+                  className="headerTableRight"
+                  onClick={() => navigate("/commitHistory")}
+                >
                   <Octicon icon={HistoryIcon} size={16} sx={{ mr: 2 }} />
-
                   <Text >4 months ago</Text>
                 </div>
               </div>

@@ -18,6 +18,7 @@ import EditCode from "./components/EditCode/EditCode";
 import RepoSettingPage from "./components/RepoSettingsPage/RepoSettingPage";
 import { useAuth } from "./authContext";
 import SignUpPage from "./components/AuthPage/SignUpPage";
+import CommitHistory from "./components/CommitHistory/CommitHistory";
 
 const ProjectRoutes = () => {
   const { currentUser, setCurrentUser } = useAuth();
@@ -105,6 +106,10 @@ const ProjectRoutes = () => {
     {
       path: "/repoSettings",
       element: <RepoSettingPage />,
+    },
+    {
+      path: "/commitHistory",
+      element: <CommitHistory />,
     },
   ]);
 
