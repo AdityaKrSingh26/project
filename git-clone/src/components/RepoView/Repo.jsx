@@ -142,6 +142,7 @@ const Repo = () => {
   return (
     <div>
       <Navbar />
+
       <UnderlineNav aria-label="Repository">
         <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
           Code
@@ -156,6 +157,7 @@ const Repo = () => {
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>
+
       {isLoading ? (
         <ProgressBar progress={50} aria-label="Upload test.png" />
       ) : (
@@ -163,6 +165,7 @@ const Repo = () => {
           <PageLayout>
             <PageLayout.Header
               sx={{
+                width: "100%",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -174,7 +177,6 @@ const Repo = () => {
                   <Header.Item>
                     <PageHeader>
                       <PageHeader.TitleArea variant={"large"}>
-                        <PageHeader.LeadingVisual></PageHeader.LeadingVisual>
                         <PageHeader.Title>Repository Title</PageHeader.Title>
                         <PageHeader.TrailingVisual>
                           <Label>Public</Label>
@@ -214,6 +216,7 @@ const Repo = () => {
                     </ActionMenu.Overlay>
                   </ActionMenu>
                 </div>
+
               </div>
             </PageLayout.Header>
 
@@ -233,21 +236,22 @@ const Repo = () => {
                   </div>
                   <div className="HeaderLeftText">
                     <Text sx={{ padding: "10px" }}>Prasun60</Text>
-                    <Text sx={{ paddings: "10px", marginLeft: "30px" }}>
-                      Latest Commit
-                      <Octicon
-                        icon={CheckIcon}
-                        size={32}
-                        color="success.fg"
-                        sx={{ mr: 2 }}
-                      />
-                    </Text>
+
                   </div>
                 </div>
+                <Text className="latest-commit" sx={{ paddings: "10px", marginLeft: "30px" }}>
+                  Latest Commit
+                  <Octicon
+                    icon={CheckIcon}
+                    size={32}
+                    color="success.fg"
+                    sx={{ mr: 2 }}
+                  />
+                </Text>
                 <div className="headerTableRight">
                   <Octicon icon={HistoryIcon} size={16} sx={{ mr: 2 }} />
 
-                  <Text sx={{ padding: "30px" }}>4 months ago</Text>
+                  <Text >4 months ago</Text>
                 </div>
               </div>
 
