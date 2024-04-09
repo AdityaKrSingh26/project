@@ -271,7 +271,7 @@ const Repo = () => {
             <PageLayout.Pane sx={{}}>
               <div className="About">
                 <Heading sx={{ color: "whitesmoke" }}>About</Heading>
-                <div class="f4 my-3 color-fg-muted text-italic">
+                <div className="f4 my-3 color-fg-muted text-italic">
                   No description, website, or topics provided.
                 </div>
                 <div className="AboutText">
