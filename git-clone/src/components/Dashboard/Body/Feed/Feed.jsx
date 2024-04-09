@@ -8,70 +8,31 @@ import CardActions from "@mui/material/CardActions";
 import "./Feed.css";
 import { MarkGithubIcon } from "@primer/octicons-react";
 
-const repositories = [
-  {
-    title: "React",
-    description:
-      "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
-    url: "https://github.com/facebook/react",
-  },
-  {
-    title: "Vue.js",
-    description: "The Progressive JavaScript Framework.",
-    url: "https://github.com/vuejs/vue",
-  },
-  {
-    title: "Angular",
-    description: "One framework. Mobile & desktop.",
-    url: "https://github.com/angular/angular",
-  },
-  {
-    title: "Django",
-    description:
-      "A high-level Python Web framework that encourages rapid development and clean, pragmatic design.",
-    url: "https://github.com/django/django",
-  },
-  {
-    title: "Flask",
-    description: "A lightweight WSGI web application framework.",
-    url: "https://github.com/pallets/flask",
-  },
-  {
-    title: "Express",
-    description: "Fast, unopinionated, minimalist web framework for Node.js",
-    url: "https://github.com/expressjs/express",
-  },
-  {
-    title: "Laravel",
-    description: "The PHP Framework For Web Artisans.",
-    url: "https://github.com/laravel/laravel",
-  },
-  {
-    title: "Spring Boot",
-    description:
-      "Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can just run.",
-    url: "https://github.com/spring-projects/spring-boot",
-  },
-  {
-    title: "Ruby on Rails",
-    description:
-      "Ruby on Rails, or Rails, is a server-side web application framework written in Ruby.",
-    url: "https://github.com/rails/rails",
-  },
-  {
-    title: "ASP.NET Core",
-    description:
-      "ASP.NET Core is a free and open-source web framework, a cross-platform successor to ASP.NET, and is used to build modern, cloud-based, and internet-connected applications.",
-    url: "https://github.com/dotnet/aspnetcore",
-  },
-];
-
 export default function Feed() {
+  const [repositories, setRepositories] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [visibleRepos, setVisibleRepos] = React.useState(4);
 
   const handleViewMore = () => {
     setVisibleRepos(repositories.length);
   };
+
+  React.useEffect(() => {
+    const fetchRepositories = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://backendgit-1.onrender.com/repos");
+        const data = await response.json();
+        setRepositories(data);
+      } catch (error) {
+        console.error("Failed to fetch repositories:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRepositories();
+  }, []);
 
   return (
     <>
@@ -91,42 +52,44 @@ export default function Feed() {
               flexDirection: "column",
               gap: "1em",
               margin: "2vw",
-
               height: "100%",
             }}
           >
             <h1 className="HomeText">Home</h1>
-            {/* Filter Button */}
-            {repositories.slice(0, visibleRepos).map((repo, index) => (
-              <Box key={index} sx={{ width: 750 }}>
-                <Card
-                  variant="outlined"
-                  sx={{
-                    marginBottom:
-                      index === repositories.length - 1 ? "20px" : "0",
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h5" component="div">
-                      {repo.title}
-                    </Typography>
-                    <Typography variant="body2" color="whitesmoke">
-                      {repo.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      href={repo.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Repository
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Box>
-            ))}
+            {isLoading ? (
+              <Typography variant="body1">Loading repositories...</Typography>
+            ) : (
+              repositories.slice(0, visibleRepos).map((repo, index) => (
+                <Box key={index} sx={{ width: 750 }}>
+                  <Card
+                    variant="outlined"
+                    sx={{
+                      marginBottom:
+                        index === repositories.length - 1 ? "20px" : "0",
+                    }}
+                  >
+                    <CardContent>
+                      <Typography variant="h5" component="div">
+                        {repo.name}
+                      </Typography>
+                      <Typography variant="body2" color="whitesmoke">
+                        {repo.content}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        size="small"
+                        href={repo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Repository
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Box>
+              ))
+            )}
             {visibleRepos < repositories.length && (
               <Button
                 variant="contained"
@@ -147,7 +110,6 @@ export default function Feed() {
               flexDirection: "column",
               gap: 2,
               overflowY: "auto",
-
               marginTop: "4vw",
             }}
           >

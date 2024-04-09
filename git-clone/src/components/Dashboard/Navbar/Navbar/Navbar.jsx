@@ -16,7 +16,8 @@ import {
 } from "@primer/octicons-react";
 import TemporaryDrawer from "../../Sidebar/Sidebar";
 
-const Navbar = () => {
+const Navbar = ({ name }) => {
+  console.log("name:" + name);
   return (
     <div className="navbarMain">
       <div className="leftnav">
@@ -28,7 +29,7 @@ const Navbar = () => {
           <div className="logo">
             <MarkGithubIcon size={"medium"} />
           </div>
-          <div className="name">Dashboard</div>
+          <div className="name">{name ? name : "Dashboard"}</div>
         </div>
       </div>
 

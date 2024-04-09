@@ -1,30 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PageHeader } from "@primer/react/drafts";
 import logo from "./github-mark-white.svg";
+import "./SignUpPage.css";
 import { Box, Button } from "@primer/react";
 import axios from "axios";
-import { useState } from "react";
 import { useAuth } from "../../authContext";
 
-import "./loginPage.css";
-
-function LoginPage() {
-  useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    setCurrentUser(null);
-  }, []);
+function SignUpPage() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState(""); // Added state for email
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
   const { currentUser, setCurrentUser } = useAuth();
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
+    // Renamed from handleLogin to handleSignUp
     e.preventDefault();
     try {
       setLoader(true);
-      const res = await axios.post("https://backendgit-1.onrender.com/login", {
+
+      const res = await axios.post("https://backendgit-1.onrender.com/signup", {
         username,
+        email,
         password,
       });
       const token = res.data.token;
@@ -37,7 +34,7 @@ function LoginPage() {
       window.location.href = "/"; // Adjust the path as needed
     } catch (err) {
       console.error(err);
-      alert("Login failed. Please check your username and password.");
+      alert(err.message);
     }
   };
 
@@ -56,52 +53,61 @@ function LoginPage() {
           >
             <PageHeader>
               <PageHeader.TitleArea variant="large">
-                <PageHeader.Title>Sign In</PageHeader.Title>
+                <PageHeader.Title>Sign Up</PageHeader.Title>
               </PageHeader.TitleArea>
             </PageHeader>
           </Box>
         </div>
         <div className="login-box">
           <div>
-            <label class="label">Email address</label>
+            <label className="label">Email</label>
             <input
-              autocomplete="off"
-              name="Email"
-              id="Email"
-              class="input"
-              type="email"
+              autoComplete="off"
+              name="username"
+              id="username"
+              className="input"
+              type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value)} // Update the username state on change
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label">Username</label>
+            <input
+              autoComplete="off"
+              name="email"
+              id="email"
+              className="input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="div">
-            <label class="label">Password</label>
+            <label className="label">Password</label>
             <input
-              autocomplete="off"
-              name="Password"
-              id="Password"
-              class="input"
+              autoComplete="off"
+              name="password"
+              id="password"
+              className="input"
               type="password"
-              value={password} // Bind the password state to the input value
-              onChange={(e) => setPassword(e.target.value)} // Update the password state on change
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <Button
             variant="primary"
             sx={{ width: 250 }}
-            onClick={handleLogin}
+            onClick={handleSignUp}
             disabled={loader}
           >
-            {loader ? "Loading..." : "Sign In"}
+            {loader ? "Loading..." : "Sign Up"}
           </Button>
         </div>
         <div className="pass-box">
-          {/* <p>
-            <a href="/sign">Sign in with a passkey</a>
-          </p> */}
           <p>
-            New to GitHub? <a href="/signup">Create an account</a>
+            <a href="/signin">Already have an account? Sign in</a>
           </p>
         </div>
       </div>
@@ -109,4 +115,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignUpPage;

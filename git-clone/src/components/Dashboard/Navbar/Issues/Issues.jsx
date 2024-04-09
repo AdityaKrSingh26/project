@@ -7,20 +7,25 @@ import "./Issues.css";
 const Issues = () => {
   return (
     <div>
-      <Box>
-        <IconButton
-          icon={IssueOpenedIcon}
-          aria-label="Issues"
-          sx={{
-            backgroundColor: "transparent", // Make the background transparent
-            border: "1px solid white", // Add a white border
-            color: "white", // Ensure the icon color is white
-            "&:hover": {
-              backgroundColor: "transparent", // Optional: Add a hover effect
-            },
-          }}
-        />
-      </Box>
+      <div className="navbar-issues">
+        <Box>
+          <IconButton
+            icon={IssueOpenedIcon}
+            aria-label="Issues"
+            sx={{
+              backgroundColor: "transparent", // Make the background transparent
+              border: "1px solid white", // Add a white border
+              color: "white", // Ensure the icon color is white
+              "&:hover": {
+                backgroundColor: "transparent", // Optional: Add a hover effect
+              },
+            }}
+            onClick={() => {
+              window.location.href = "/addIssue";
+            }}
+          />
+        </Box>
+      </div>
     </div>
   );
 };
