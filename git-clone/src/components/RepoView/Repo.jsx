@@ -188,6 +188,61 @@ const Repo = () => {
                   <ActionMenu>
                     <ActionMenu.Button
                       sx={{
+                        backgroundColor: "black",
+                        border: "1px solid gray",
+                        color: "white",
+                        "&:hover": {
+                          backgroundColor: "black",
+                          borderColor: "white",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      Add File
+                    </ActionMenu.Button>
+                    <ActionMenu.Overlay>
+
+                      <ActionList
+                        sx={{
+                          backgroundColor: "rgb(40,44,52)",
+                          color: "white",
+                        }}
+                      >
+                        <ActionList.Item
+                          sx={{
+                            backgroundColor: "rgb(40,44,52)",
+                            color: "white",
+                          }}
+                        >
+                          Create New File
+                        </ActionList.Item>
+                      </ActionList>
+
+
+                      <ActionList
+                        sx={{
+                          backgroundColor: "rgb(40,44,52)",
+                          color: "white",
+                        }}
+                      >
+                        <ActionList.Item
+                          sx={{
+                            backgroundColor: "rgb(40,44,52)",
+                            color: "white",
+                          }}
+                          onClick={() => navigate("/uploadFile")}
+                        >
+                          Upload File
+                        </ActionList.Item>
+                      </ActionList>
+
+
+                    </ActionMenu.Overlay>
+                  </ActionMenu>
+
+                  <ActionMenu>
+                    <ActionMenu.Button
+                      sx={{
                         backgroundColor: "green", // Set the background to black
                         color: "white", // Ensure the text color is white
                       }}

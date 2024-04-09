@@ -15,7 +15,7 @@ function CommitHistory() {
             <Navbar name="UserName" />
 
             <UnderlineNav aria-label="Repository">
-                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
+                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoView')}>
                     Code
                 </UnderlineNav.Item>
                 <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
@@ -37,28 +37,55 @@ function CommitHistory() {
             </div>
 
             <div className="btn-wrapper">
-                <ActionMenu
-                    className="action-menu"
-                >
-                    <ActionMenu.Button>main</ActionMenu.Button>
+                <ActionMenu>
+                    <ActionMenu.Button
+                        sx={{
+                            backgroundColor: "black", // Set the background to black
+                            border: "1px solid white", // Add a white border
+                            color: "white", // Ensure the text color is white
+                            "&:hover": {
+                                backgroundColor: "black",
+                                color: "black",
+                            },
+                        }}
+                    >
+                        main
+                    </ActionMenu.Button>
                     <ActionMenu.Overlay width="medium">
-                        <ActionList>
-                            <ActionList.Item onSelect={() => alert('Master Branch Selected')}>
-                                master
+                        <ActionList
+                            sx={{
+                                backgroundColor: "rgb(40,44,52)", // Set the background to black
+                                color: "white", // Ensure the text color is white
+                            }}
+                        >
+                            <ActionList.Item
+                                sx={{
+                                    backgroundColor: "rgb(40,44,52)", // Set the background to black
+                                    color: "white", // Ensure the text color is white
+                                }}
+                            >
+                                Main
                             </ActionList.Item>
-                        </ActionList>
-                        <ActionList>
-                            <ActionList.Item onSelect={() => alert('User Branch Selected')}>
-                                user
+                            <ActionList.Item
+                                sx={{
+                                    backgroundColor: "rgb(40,44,52)", // Set the background to black
+                                    color: "white", // Ensure the text color is white
+                                }}
+                            >
+                                Master
                             </ActionList.Item>
-                        </ActionList>
-                        <ActionList>
-                            <ActionList.Item onSelect={() => alert('Random Branch Selected')}>
-                                random
+
+                            <ActionList.Item
+                                variant="danger"
+                                sx={{
+                                    backgroundColor: "rgb(40,44,52)", // Set the background to black
+                                    color: "white", // Ensure the text color is white
+                                }}
+                            >
+                                Random
                             </ActionList.Item>
                         </ActionList>
                     </ActionMenu.Overlay>
-
                 </ActionMenu>
             </div>
 

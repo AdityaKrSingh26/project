@@ -19,6 +19,7 @@ import RepoSettingPage from "./components/RepoSettingsPage/RepoSettingPage";
 import { useAuth } from "./authContext";
 import SignUpPage from "./components/AuthPage/SignUpPage";
 import CommitHistory from "./components/CommitHistory/CommitHistory";
+import UploadFile from "./components/UploadFile/UploadFile";
 
 const ProjectRoutes = () => {
   const { currentUser, setCurrentUser } = useAuth();
@@ -110,6 +111,10 @@ const ProjectRoutes = () => {
     {
       path: "/commitHistory",
       element: <CommitHistory />,
+    },
+    {
+      path: "/uploadFile",
+      element: <UploadFile />,
     },
   ]);
 

@@ -116,6 +116,11 @@ hr {
   border-radius: 10px;
 }
 
+.downloadButton {
+  display: flex;
+  gap: 20px;
+}
+
 @media screen and (max-width: 450px) {
 
   .centreTextBody,
