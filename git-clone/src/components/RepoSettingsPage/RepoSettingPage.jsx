@@ -38,8 +38,8 @@ function RepoSettingPage() {
             <div className="line-break"></div>
             <h5 style={{ margin: '10px 0px' }}>Repository Name</h5>
             <TextInput
+              className='settings-text-input'
               sx={{
-                width: "300px",
                 height: "30px",
                 backgroundColor: "transparent", // Make the background transparent
                 color: "whitesmoke", // Ensure the icon color is white
@@ -74,8 +74,9 @@ function RepoSettingPage() {
               <p>Default branch The default branch is considered the “base” branch in your repository, against which all pull requests and code commits are automatically made, unless you specify a different branch.</p>
 
               <TextInput
+                className='settings-text-input'
                 sx={{
-                  width: "300px",
+                  // width: "300px",
                   height: "30px",
                   backgroundColor: "transparent", // Make the background transparent
                   color: "whitesmoke", // Ensure the icon color is white
