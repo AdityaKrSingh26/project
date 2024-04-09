@@ -4,13 +4,8 @@ import Navbar from '../Dashboard/Navbar/Navbar/Navbar'
 import Drawer from '@mui/material/Drawer';
 import FilterMenu from './FilterMenu';
 import {
-    BookIcon,
-    PlusCircleIcon,
     LinkIcon,
     RepoIcon,
-    CodeIcon,
-    BugIcon,
-    GitPullRequestIcon,
 } from "@primer/octicons-react";
 import "./SearchPage.css"
 
@@ -59,55 +54,64 @@ function SearchPage() {
                     <FilterMenu />
                 </div>
 
-                <div className="search-result-wrapper">
-                    <div className="search-result-section">
-                        {repos.map((repo) => (
-                            <div className="search-result">
-                                <div className="repo-name">
-                                    <h5>{repo.name}</h5>
+
+                {repos.length === 0 ? (
+                    <div className="norepo-found">
+                        <p>No results found.</p>
+                    </div>
+                ) : (
+                    repos.map((repo) => (
+                        <div className="search-result-wrapper">
+                            <div className="search-result-section">
+                                <div className="search-result" key={repo.id}>
+                                    <div className="repo-name">
+                                        <h5>{repo.name}</h5>
+                                    </div>
+                                    <div className="description">
+                                        <p>{repo.content}</p>
+                                        <div className="language-item">
+                                            <div
+                                                style={{
+                                                    backgroundColor: "green", // Adjust based on the language
+                                                    width: "10px",
+                                                    height: "10px",
+                                                    borderRadius: "50%",
+                                                }}
+                                            ></div>
+                                            <p>HTML</p>{" "}
+                                            {/* Assuming each repo has a 'language' property */}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="description">
-                                    <p>{repo.content}</p>
-                                    <div className="language-item">
-                                        <div
-                                            style={{
-                                                backgroundColor: "green", // Adjust based on the language
-                                                width: "10px",
-                                                height: "10px",
-                                                borderRadius: "50%",
-                                            }}
-                                        ></div>
-                                        <p>HTML</p>{" "}
-                                        {/* Assuming each repo has a 'language' property */}
+
+                                <div className="right-section">
+                                    <div className="right-section-box">
+                                        <h5>Git</h5>
+                                        <p>Git is the most widely used version control system.</p>
+                                        <div>
+                                            <span><LinkIcon /></span>
+                                            <span>git-scm.com</span>
+                                        </div>
+                                        <div>
+                                            <span><LinkIcon /></span>
+                                            <span>Wikipedia</span>
+                                        </div>
+                                        <div>
+                                            <span><RepoIcon /></span>
+                                            <span>git</span>
+                                        </div>
+                                    </div>
+                                    <div className="right-section-box">
+                                        <h5>Sponsor open source projects you depend on</h5>
+                                        <p>Contributors are working behind the scenes to make open source better for everyone—give them the help and recognition they deserve.</p>
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))
+                )}
 
-                    <div className="right-section">
-                        <div className="right-section-box">
-                            <h5>Git</h5>
-                            <p>Git is the most widely used version control system.</p>
-                            <div>
-                                <span><LinkIcon /></span>
-                                <span>git-scm.com</span>
-                            </div>
-                            <div>
-                                <span><LinkIcon /></span>
-                                <span>Wikipedia</span>
-                            </div>
-                            <div>
-                                <span><RepoIcon /></span>
-                                <span>git</span>
-                            </div>
-                        </div>
-                        <div className="right-section-box">
-                            <h5>Sponsor open source projects you depend on</h5>
-                            <p>Contributors are working behind the scenes to make open source better for everyone—give them the help and recognition they deserve.</p>
-                        </div>
-                    </div>
-               </div>
+
 
 
             </div>
