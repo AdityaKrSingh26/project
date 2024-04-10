@@ -2,7 +2,6 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-
 import "./Sidebar.css";
 import { IconButton } from "@primer/react";
 import {
@@ -16,9 +15,10 @@ import {
   ProjectIcon,
   ThreeBarsIcon,
 } from "@primer/octicons-react";
+import { useAuth } from "../../../authContext";
 
 export default function TemporaryDrawer() {
-  const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useAuth();
 
   const [state, setState] = React.useState({
     top: false,
@@ -26,6 +26,8 @@ export default function TemporaryDrawer() {
     bottom: false,
     right: false,
   });
+
+  const navigate = useNavigate(); // Get the navigate function
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -51,33 +53,31 @@ export default function TemporaryDrawer() {
               <HomeFillIcon sx={{ margin: "20px" }} />
               <span>Home</span>
             </li>
-            <li>
+            <li onClick={() => navigate("/issue")}>
               <IssueOpenedIcon />
               <span>Issues</span>
             </li>
-            <li>
+            <li onClick={() => navigate("/pullrequest")}>
               <GitPullRequestIcon />
               <span>Pull Requests</span>
             </li>
-            <li>
+            <li onClick={() => navigate("/repo")}>
               <ProjectIcon />
               <span>Projects</span>
             </li>
-            <li>
+            <li onClick={() => navigate("/search")}>
               <DiscussionClosedIcon />
               <span>Discussions</span>
             </li>
-            <li>
+            <li onClick={() => navigate("/editcode")}>
               <CodeIcon />
               <span>Codespaces</span>
             </li>
-
             <li
               onClick={() => {
                 localStorage.removeItem("token");
                 localStorage.removeItem("userId");
                 setCurrentUser(null);
-                alert("You are logged out");
                 // Redirect the user to the login page
                 window.location.href = "/auth";
               }}
