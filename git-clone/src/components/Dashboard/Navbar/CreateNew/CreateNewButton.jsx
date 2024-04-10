@@ -28,7 +28,9 @@ const CreateNew = () => {
             }}
           >
             <ActionList.Item
-              onSelect={() => alert("Copy link clicked")}
+              onSelect={() => {
+                window.location.href = "/createRepo";
+              }}
               sx={{
                 backgroundColor: "rgb(40,44,52)", // Set the background to black
                 color: "white", // Ensure the text color is white

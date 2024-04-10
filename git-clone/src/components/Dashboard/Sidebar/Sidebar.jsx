@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import "./Sidebar.css";
 import { IconButton } from "@primer/react";
 import {
+  CloudOfflineIcon,
   CodeIcon,
   DiscussionClosedIcon,
   GitPullRequestIcon,
@@ -46,7 +47,7 @@ export default function TemporaryDrawer() {
       <div className="side-bar-options">
         <div className="upper-options">
           <ul>
-            <li onClick={() => navigate('/')}>
+            <li onClick={() => navigate("/")}>
               <HomeFillIcon sx={{ margin: "20px" }} />
               <span>Home</span>
             </li>
@@ -69,6 +70,20 @@ export default function TemporaryDrawer() {
             <li>
               <CodeIcon />
               <span>Codespaces</span>
+            </li>
+
+            <li
+              onClick={() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("userId");
+                setCurrentUser(null);
+                alert("You are logged out");
+                // Redirect the user to the login page
+                window.location.href = "/auth";
+              }}
+            >
+              <CloudOfflineIcon />
+              <span>Logout</span>
             </li>
           </ul>
         </div>

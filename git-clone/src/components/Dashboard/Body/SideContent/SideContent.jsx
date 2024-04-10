@@ -6,7 +6,6 @@ import { Button } from "@mui/material";
 
 import "./SideContent.css"; // Import your CSS file
 
-
 const Sidebar = () => {
   const [repositories, setRepositories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -77,9 +76,7 @@ const Sidebar = () => {
                   backgroundColor: "rgb(40,44,52)", // Set the background to black
                   color: "white", // Ensure the text color is white
                 }}
-              >
-                {/* ActionList items */}
-              </ActionList>
+              ></ActionList>
             </ActionMenu.Overlay>
           </ActionMenu>
         </div>

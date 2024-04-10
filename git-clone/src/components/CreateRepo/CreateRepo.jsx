@@ -13,6 +13,7 @@ import {
   Button,
 } from "@primer/react";
 import { LockIcon, RepoIcon } from "@primer/octicons-react";
+import axios from "axios";
 
 // Extracted FilterInput component for reusability
 const FilterInput = ({ placeholder, value, onChange }) => (
@@ -31,10 +32,10 @@ const FilterInput = ({ placeholder, value, onChange }) => (
 const CreateRepo = ({ ownerName, RepoName }) => {
   const ownerNames = ["Prasun60", "JohnDoe", "JaneSmith", "Alice", "Bob"];
   const [filter, setFilter] = useState("");
-  const [visibility, setVisibility] = useState("public"); // State for visibility
-  const [selectedRadio, setSelectedRadio] = useState("public"); // State for radio button
-  const [description, setDescription] = useState(""); // State for description
-  const [addReadme, setAddReadme] = useState(false); // State for "Add Readme" checkbox
+  const [visibility, setVisibility] = useState("public");
+  const [selectedRadio, setSelectedRadio] = useState("public");
+  const [description, setDescription] = useState("");
+  const [addReadme, setAddReadme] = useState(false);
 
   const filteredNames = ownerNames.filter((name) =>
     name.toLowerCase().includes(filter.toLowerCase())
@@ -51,6 +52,30 @@ const CreateRepo = ({ ownerName, RepoName }) => {
 
   const handleAddReadmeChange = (event) => {
     setAddReadme(event.target.checked);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = {
+      userId: "66154f309c83eb0e3df1461c",
+      repositoryName: RepoName,
+      publicOrPrivate: visibility,
+      type: "file",
+      content: description,
+      parent: null,
+      issues: [],
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/repos/create",
+        formData
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -300,6 +325,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
           >
             <Button
               variant="primary"
+              onClick={handleSubmit}
               sx={{ color: "black", backgroundColor: "#26cd4d" }}
             >
               Create Repository
