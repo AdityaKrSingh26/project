@@ -5,6 +5,7 @@ import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput } from "@primer/react";
 import {
   ChevronDownIcon,
+  CommentDiscussionIcon,
   IssueOpenedIcon,
   MilestoneIcon,
   TagIcon,
@@ -36,6 +37,7 @@ function IssueView() {
 
       <div className="pull-request-wrapper">
         <div className="pr-search-section">
+
           <div className="filter-and-search" style={{ width: "100%" }}>
             <button className="repo-search-btn">
               <p>Filter</p>
@@ -71,7 +73,7 @@ function IssueView() {
           </div>
         </div>
 
-        <div className="pr-list-section">
+        {/* <div className="pr-list-section">
           <div className="text-info">
             <IssueOpenedIcon size={24} />
             <h3>Welcome to issues!</h3>
@@ -81,7 +83,54 @@ function IssueView() {
               filterable list. To get started, you should create an issue.
             </p>
           </div>
+        </div> */}
+
+
+        <div className="pr-list-box">
+          <div className="boxupper">
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
+              <IssueOpenedIcon />
+              <h5>62 open</h5>
+            </div>
+          </div>
+
+          <div className="boxlower">
+
+            <div className="lowerbox-card">
+              <div className="lowerbox-card-text">
+                <IssueOpenedIcon />
+                <p>Ability to increase the downward speed of the ball in the Fraction Bounce Activity</p>
+              </div>
+              <CommentDiscussionIcon />
+            </div>
+            <div className="line-break"></div>
+
+
+            <div className="lowerbox-card">
+              <div className="lowerbox-card-text">
+                <IssueOpenedIcon />
+                <p>Ability to increase the downward speed of the ball in the Fraction Bounce Activity</p>
+              </div>
+              <CommentDiscussionIcon />
+            </div>
+            <div className="line-break"></div>
+
+
+            <div className="lowerbox-card">
+              <div className="lowerbox-card-text">
+                <IssueOpenedIcon />
+                <p>Ability to increase the downward speed of the ball in the Fraction Bounce Activity</p>
+              </div>
+              <CommentDiscussionIcon />
+            </div>
+            <div className="line-break"></div>
+
+
+          </div>
         </div>
+
+
+
       </div>
     </div>
   );
