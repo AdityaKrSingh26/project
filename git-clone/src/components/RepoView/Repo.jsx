@@ -312,7 +312,7 @@ const Repo = () => {
 
               <div className="tableBody">
                 {mockData.map((item, index) => (
-                  <div key={index} className="rows">
+                  <div key={index} className="rows" onClick={() => navigate('/editcode')}>
                     <div className="leftTextBody">
                       {item.type === "folder" ? (
                         <FileDirectoryFillIcon size={16} />
