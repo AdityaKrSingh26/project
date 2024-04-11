@@ -73,7 +73,7 @@ const ProjectRoutes = () => {
       element: <SearchPage />,
     },
     {
-      path: "/repoview/:id",
+      path: "/repoview/:repositoryId",
       element: <Repo />,
     },
     {

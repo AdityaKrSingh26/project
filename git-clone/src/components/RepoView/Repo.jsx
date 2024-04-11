@@ -38,6 +38,9 @@ const Repo = () => {
   useEffect(() => {
     const fetchRepoTitle = async () => {
       try {
+        console.log("====================================");
+        console.log("id", repositoryId);
+        console.log("====================================");
         const response = await axios.get(
           `https://backendgit-1.onrender.com/repos/${repositoryId}`
         );
