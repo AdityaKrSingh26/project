@@ -44,7 +44,7 @@ const Repo = () => {
         const response = await axios.get(
           `https://backendgit-1.onrender.com/repos/${repositoryId}`
         );
-        setRepositoryTitle(response.data.name);
+        setRepositoryTitle(response.data);
         console.log("====================================");
         console.log(response.data);
         console.log("====================================");
@@ -200,9 +200,13 @@ const Repo = () => {
                   <Header.Item>
                     <PageHeader>
                       <PageHeader.TitleArea variant={"large"}>
-                        <PageHeader.Title>{repositoryTitle}</PageHeader.Title>
+                        <PageHeader.Title>
+                          {repositoryTitle.name}
+                        </PageHeader.Title>
                         <PageHeader.TrailingVisual>
-                          <Label>Public</Label>
+                          <Label>
+                            {repositoryTitle.visibility ? "Public" : "Private"}
+                          </Label>
                         </PageHeader.TrailingVisual>
                       </PageHeader.TitleArea>
                     </PageHeader>
