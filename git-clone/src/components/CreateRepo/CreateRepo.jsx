@@ -29,13 +29,14 @@ const FilterInput = ({ placeholder, value, onChange }) => (
   />
 );
 
-const CreateRepo = ({ ownerName, RepoName }) => {
+const CreateRepo = ({ ownerName }) => {
   const ownerNames = ["Prasun60", "JohnDoe", "JaneSmith", "Alice", "Bob"];
   const [filter, setFilter] = useState("");
   const [visibility, setVisibility] = useState("public");
   const [selectedRadio, setSelectedRadio] = useState("public");
   const [description, setDescription] = useState("");
   const [addReadme, setAddReadme] = useState(false);
+  const [repoName, setRepoName] = useState("");
 
   const filteredNames = ownerNames.filter((name) =>
     name.toLowerCase().includes(filter.toLowerCase())
@@ -54,22 +55,25 @@ const CreateRepo = ({ ownerName, RepoName }) => {
     setAddReadme(event.target.checked);
   };
 
+  const handleRepoNameChange = (event) => {
+    setRepoName(event.target.value); // Update the repository name state variable
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = {
-      userId: "66154f309c83eb0e3df1461c",
-      repositoryName: RepoName,
-      publicOrPrivate: visibility,
-      type: "file",
-      content: description,
-      parent: null,
+      userId: "6617042d19a58e34628738ad",
+      repositoryName: repoName,
+      description: description,
+      visibility: visibility === "public",
+      content: description ? "Heyy this is a new repo" : "",
       issues: [],
     };
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/repos/create",
+        "https://backendgit-1.onrender.com/repos/create",
         formData
       );
       console.log(response.data);
@@ -213,6 +217,8 @@ const CreateRepo = ({ ownerName, RepoName }) => {
               <FormControl>
                 <TextInput
                   id="repo-name-input"
+                  value={repoName}
+                  onChange={handleRepoNameChange}
                   sx={{
                     backgroundColor: "black",
                     border: "1px solid white",
