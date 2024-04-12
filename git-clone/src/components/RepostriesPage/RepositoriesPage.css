@@ -35,6 +35,7 @@
 
 .repo-star-btn,
 .repo-search-btn {
+    padding: 10px;
     background-color: #21262d;
     color: whitesmoke;
     min-width: 100px;

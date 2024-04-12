@@ -89,11 +89,11 @@ const Sidebar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <IconButton
+        {/* <IconButton
           icon={BookmarkSlashFillIcon}
           size={"medium"}
           variant="primary"
-        />
+        /> */}
       </div>
 
       <ul className="repo-list">

@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ActionMenu, ActionList } from "@primer/react";
 
 const CreateNew = () => {
+  const navigate = useNavigate();
+
+
   return (
     <div className="navabar-createnew">
       <ActionMenu>
