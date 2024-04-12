@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ActionMenu, ActionList } from "@primer/react";
 
 const CreateNew = () => {
+  const navigate = useNavigate();
+
+
   return (
     <div className="navabar-createnew">
       <ActionMenu>
@@ -28,7 +32,7 @@ const CreateNew = () => {
             }}
           >
             <ActionList.Item
-              onSelect={() => alert("Copy link clicked")}
+              onClick={() => navigate("/createRepo")}
               sx={{
                 backgroundColor: "rgb(40,44,52)", // Set the background to black
                 color: "white", // Ensure the text color is white

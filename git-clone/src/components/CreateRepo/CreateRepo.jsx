@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CreateRepo.css";
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import {
@@ -29,6 +30,8 @@ const FilterInput = ({ placeholder, value, onChange }) => (
 );
 
 const CreateRepo = ({ ownerName, RepoName }) => {
+
+  const navigate = useNavigate();
   const ownerNames = ["Prasun60", "JohnDoe", "JaneSmith", "Alice", "Bob"];
   const [filter, setFilter] = useState("");
   const [visibility, setVisibility] = useState("public"); // State for visibility
@@ -57,7 +60,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
     <>
       <Navbar title="New Repository" />
       <hr />
-      <div className="createRepoForm">
+      <div className="createRepoForm" >
         <hr />
         <div className="textNew">
           <div
@@ -299,6 +302,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
             style={{ display: "flex", justifyContent: "flex-end" }}
           >
             <Button
+              onClick={() => navigate("/createRepoDetail")}
               variant="primary"
               sx={{ color: "black", backgroundColor: "#26cd4d" }}
             >
