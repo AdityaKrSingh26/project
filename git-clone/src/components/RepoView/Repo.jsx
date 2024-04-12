@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import {
   PageLayout,
   Label,
@@ -31,16 +32,31 @@ const Repo = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [componentCount, setComponentCount] = useState(10);
+  const { repositoryId } = useParams();
+  const [repositoryTitle, setRepositoryTitle] = useState("");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    const fetchRepoTitle = async () => {
+      try {
+        console.log("====================================");
+        console.log("id", repositoryId);
+        console.log("====================================");
+        const response = await axios.get(
+          `https://backendgit-1.onrender.com/repos/${repositoryId}`
+        );
+        setRepositoryTitle(response.data);
+        console.log("====================================");
+        console.log(response.data);
+        console.log("====================================");
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch repository title:", error);
+        setIsLoading(false);
+      }
+    };
+    fetchRepoTitle();
+  }, [repositoryId]);
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Mock data
   const mockData = [
     {
       type: "folder",
@@ -145,13 +161,22 @@ const Repo = () => {
         <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
           Code
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/issue")}
+        >
           Issues
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/pullrequest")}
+        >
           Pull Requests
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/repoSettings")}
+        >
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>
@@ -175,9 +200,13 @@ const Repo = () => {
                   <Header.Item>
                     <PageHeader>
                       <PageHeader.TitleArea variant={"large"}>
-                        <PageHeader.Title>Repository Title</PageHeader.Title>
+                        <PageHeader.Title>
+                          {repositoryTitle.name}
+                        </PageHeader.Title>
                         <PageHeader.TrailingVisual>
-                          <Label>Public</Label>
+                          <Label>
+                            {repositoryTitle.visibility ? "Public" : "Private"}
+                          </Label>
                         </PageHeader.TrailingVisual>
                       </PageHeader.TitleArea>
                     </PageHeader>
@@ -201,7 +230,6 @@ const Repo = () => {
                       Add File
                     </ActionMenu.Button>
                     <ActionMenu.Overlay>
-
                       <ActionList
                         sx={{
                           backgroundColor: "rgb(40,44,52)",
@@ -217,7 +245,6 @@ const Repo = () => {
                           Create New File
                         </ActionList.Item>
                       </ActionList>
-
 
                       <ActionList
                         sx={{
@@ -235,8 +262,6 @@ const Repo = () => {
                           Upload File
                         </ActionList.Item>
                       </ActionList>
-
-
                     </ActionMenu.Overlay>
                   </ActionMenu>
 
@@ -269,7 +294,6 @@ const Repo = () => {
                     </ActionMenu.Overlay>
                   </ActionMenu>
                 </div>
-
               </div>
             </PageLayout.Header>
 
@@ -289,10 +313,12 @@ const Repo = () => {
                   </div>
                   <div className="HeaderLeftText">
                     <Text sx={{ padding: "10px" }}>Prasun60</Text>
-
                   </div>
                 </div>
-                <Text className="latest-commit" sx={{ paddings: "10px", marginLeft: "30px" }}>
+                <Text
+                  className="latest-commit"
+                  sx={{ paddings: "10px", marginLeft: "30px" }}
+                >
                   Latest Commit
                   <Octicon
                     icon={CheckIcon}
@@ -306,13 +332,17 @@ const Repo = () => {
                   onClick={() => navigate("/commitHistory")}
                 >
                   <Octicon icon={HistoryIcon} size={16} sx={{ mr: 2 }} />
-                  <Text >4 months ago</Text>
+                  <Text>4 months ago</Text>
                 </div>
               </div>
 
               <div className="tableBody">
                 {mockData.map((item, index) => (
-                  <div key={index} className="rows" onClick={() => navigate('/editcode')}>
+                  <div
+                    key={index}
+                    className="rows"
+                    onClick={() => navigate("/editcode")}
+                  >
                     <div className="leftTextBody">
                       {item.type === "folder" ? (
                         <FileDirectoryFillIcon size={16} />
