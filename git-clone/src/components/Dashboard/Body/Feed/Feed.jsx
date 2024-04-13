@@ -112,7 +112,7 @@ export default function Feed() {
             <h1 className="HomeText" style={{ margin: "0" }}>Home</h1>
             {/* Filter Button */}
             {isLoading ? (
-              <Typography variant="body1" > Loading repositories...</Typography>
+              <Typography className="dashboard-card" variant="body1" > Loading repositories...</Typography>
             ) : (repositories.slice(0, visibleRepos).map((repo, index) => (
               <Box key={index} >
                 <Card
@@ -196,7 +196,7 @@ export default function Feed() {
             </Card>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 }

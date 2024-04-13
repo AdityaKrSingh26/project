@@ -118,7 +118,7 @@ function RepositriesPage() {
                     <div className="repo-search-section">
                         <TextInput
                             sx={{
-                                width: "60%",
+                                width: "50%",
                                 backgroundColor: "transparent", // Make the background transparent
                                 color: "whitesmoke", // Ensure the icon color is white
                                 "&:hover": {
@@ -139,6 +139,9 @@ function RepositriesPage() {
                         <button className='repo-search-btn'>
                             <p>Sort</p>
                             <ChevronDownIcon />
+                        </button>
+                        <button className='repo-search-btn' onClick={() => navigate('/createRepo')} style={{ backgroundColor: "#238737" }}>
+                            <p>New</p>
                         </button>
                     </div>
 
