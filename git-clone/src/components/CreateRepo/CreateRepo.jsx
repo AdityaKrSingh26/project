@@ -30,9 +30,7 @@ const FilterInput = ({ placeholder, value, onChange }) => (
   />
 );
 
-
 const CreateRepo = ({ ownerName, RepoName }) => {
-
   const navigate = useNavigate();
 
   const ownerNames = ["Prasun60", "JohnDoe", "JaneSmith", "Alice", "Bob"];
@@ -91,7 +89,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
     <>
       <Navbar title="New Repository" />
       <hr />
-      <div className="createRepoForm" >
+      <div className="createRepoForm">
         <hr />
         <div className="textNew">
           <div
