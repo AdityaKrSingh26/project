@@ -69,46 +69,40 @@ const Feed = () => {
               Home
             </h1>
             {isLoading ? (
-              <Typography variant="body1">Loading repositories...</Typography>
-            ) : (
-              repositories.slice(0, visibleRepos).map((repo, index) => (
-                <Box key={index}>
-                  <Card
-                    className="dashboard-card"
-                    variant="outlined"
-                    sx={{
-                      marginBottom:
-                        index === repositories.length - 1 ? "20px" : "0",
-                    }}
-                  >
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {repo.name}
-                      </Typography>
-                      <Typography variant="body2" color="whitesmoke">
-                        {repo.content}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
-                        size="small"
-                        href={repo.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={async (event) => {
-                          event.preventDefault();
-                          const repoId = await fetchRepoId(repo.name);
-                          console.log("Navigating to repoId:", repoId);
-                          navigate(`/repoview/${repoId}`);
-                        }}
-                      >
-                        View Repository
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Box>
-              ))
-            )}
+              <Typography className="dashboard-card" variant="body1" > Loading repositories...</Typography>
+            ) : (repositories.slice(0, visibleRepos).map((repo, index) => (
+              <Box key={index} >
+                <Card
+                  className="dashboard-card"
+                  variant="outlined"
+                  sx={{
+                    marginBottom:
+                      index === repositories.length - 1 ? "20px" : "0",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      {repo.name}
+                    </Typography>
+                    <Typography variant="body2" color="whitesmoke">
+                      {repo.content}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      href={repo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => navigate("/repoview")}
+                    >
+                      View Repository
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Box>
+            )))}
+              
 
             {visibleRepos < repositories.length && (
               <Button
@@ -160,7 +154,7 @@ const Feed = () => {
             </Card>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };
