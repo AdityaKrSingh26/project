@@ -18,9 +18,12 @@ const Feed = () => {
   const fetchRepoId = async (repoName) => {
     console.log(repoName);
     try {
-      const response = await axios.post("http://localhost:3000/repos/repoid", {
-        repositoryName: repoName,
-      });
+      const response = await axios.post(
+        "https://backendgit-1.onrender.com/repos/repoid",
+        {
+          repositoryName: repoName,
+        }
+      );
       console.log("Id fetched", response.data);
       return response.data;
     } catch (error) {
