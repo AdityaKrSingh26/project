@@ -1,106 +1,151 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios"; // Import Axios
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput, Button } from "@primer/react";
 
-import "./CreateNewIssue.css"
-import Editor from './Editor';
-import AvatarIcon from '../Dashboard/Navbar/Avatar/Avatar';
-
+import "./CreateNewIssue.css";
+import Editor from "./Editor";
+import AvatarIcon from "../Dashboard/Navbar/Avatar/Avatar";
 
 function CreateNewIssue() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { repositoryId } = useParams();
 
-    return (
-        <div>
-            <Navbar />
-            <UnderlineNav aria-label="Repository">
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoview')}>
-                    Code
-                </UnderlineNav.Item>
-                <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }} onClick={() => navigate('/issue')}>
-                    Issues
-                </UnderlineNav.Item>
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
-                    Pull Requests
-                </UnderlineNav.Item>
-                <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
-                    Settings
-                </UnderlineNav.Item>
-            </UnderlineNav>
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-            <div className="issue-add-section-wrapper">
-                <div className="add-issue-wrapper">
-                    <div className="add-issue-left-section">
-                        <AvatarIcon />
-                        <div className="issue-input">
-                            <h4>Title</h4>
-                            <TextInput className='text-input-addIssue'
-                                sx={{
-                                    marginBottom: '20px',
-                                    // width: "90%",
-                                    height: "30px",
-                                    backgroundColor: "transparent", // Make the background transparent
-                                    color: "whitesmoke", // Ensure the icon color is white
-                                    "&:hover": {
-                                        backgroundColor: "transparent",
-                                    },
-                                }}
-                            />
-                            <h4>Add a description</h4>
-                            <div className="editor-container">
-                                <Editor />
-                            </div>
-                            <Button className='Submit-issue' onClick={() => navigate('/issueDetails')}>Submit New Issue</Button>
-                        </div>
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const status = "closed";
+    console.log("====================================");
+    console.log(description);
+    console.log("====================================");
+    try {
+      const response = await axios.post(
+        `https://backendgit-1.onrender.com/repo/issue/${repositoryId}`,
+        {
+          title,
+          description,
+          status,
+        }
+      );
 
-                    </div>
+      console.log(response.data);
 
-                </div>
+      navigate(`/issueDetails/${repositoryId}`);
+    } catch (error) {
+      console.error("Failed to submit issue:", error);
+    }
+  };
+  return (
+    <div>
+      <Navbar />
+      <UnderlineNav aria-label="Repository">
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate(`/repoview/${repositoryId}`)}
+        >
+          Code
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
+          aria-current="page"
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate(`/issue/${repositoryId}`)}
+        >
+          Issues
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/pullrequest")}
+        >
+          Pull Requests
+        </UnderlineNav.Item>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/repoSettings")}
+        >
+          Settings
+        </UnderlineNav.Item>
+      </UnderlineNav>
 
-                <div className="issue-detail-left">
-                    <div className="detail-section">
-                        <div className="detail">
-                            <h5>Assignees</h5>
-                            <div className="detail-text">
-                                <p>No one assigned</p>
-                            </div>
-                        </div>
-                        <div className="detail">
-                            <h5>Labels</h5>
-                            <div className="detail-text">
-                                <p>None yet</p>
-                            </div>
-                        </div>
-                        <div className="detail">
-                            <h5>Projects</h5>
-                            <div className="detail-text">
-                                <p>None yet</p>
-                            </div>
-                        </div>
-                        <div className="detail">
-                            <h5>Projects</h5>
-                            <div className="detail-text">
-                                <p>None yet</p>
-                            </div>
-                        </div>
-                        <div className="detail">
-                            <h5>Projects</h5>
-                            <div className="detail-text">
-                                <p>None yet</p>
-                            </div>
-                        </div>
-                        <div className="detail">
-                            <h5>Projects</h5>
-                            <div className="detail-text">
-                                <p>None yet</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div className="issue-add-section-wrapper">
+        <div className="add-issue-wrapper">
+          <div className="add-issue-left-section">
+            <AvatarIcon />
+            <div className="issue-input">
+              <h4>Title</h4>
+              <TextInput
+                className="text-input-addIssue"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                sx={{
+                  marginBottom: "20px",
+                  height: "30px",
+                  backgroundColor: "transparent",
+                  color: "whitesmoke",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              />
+              <h4>Add a description</h4>
+              <div className="editor-container">
+                <Editor
+                  value={description}
+                  onChange={(content) => setDescription(content)}
+                />
+              </div>
+              <Button className="Submit-issue" onClick={handleSubmit}>
+                Submit New Issue
+              </Button>
             </div>
+          </div>
         </div>
-    )
+
+        <div className="issue-detail-left">
+          <div className="detail-section">
+            <div className="detail">
+              <h5>Assignees</h5>
+              <div className="detail-text">
+                <p>No one assigned</p>
+              </div>
+            </div>
+            <div className="detail">
+              <h5>Labels</h5>
+              <div className="detail-text">
+                <p>None yet</p>
+              </div>
+            </div>
+            <div className="detail">
+              <h5>Projects</h5>
+              <div className="detail-text">
+                <p>None yet</p>
+              </div>
+            </div>
+            <div className="detail">
+              <h5>Projects</h5>
+              <div className="detail-text">
+                <p>None yet</p>
+              </div>
+            </div>
+            <div className="detail">
+              <h5>Projects</h5>
+              <div className="detail-text">
+                <p>None yet</p>
+              </div>
+            </div>
+            <div className="detail">
+              <h5>Projects</h5>
+              <div className="detail-text">
+                <p>None yet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default CreateNewIssue
+export default CreateNewIssue;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput } from "@primer/react";
@@ -14,30 +14,38 @@ import {
 import "./IssueView.css";
 
 function IssueView() {
+  const { repositoryId } = useParams();
   const navigate = useNavigate();
-
 
   return (
     <div>
       <Navbar />
       <UnderlineNav aria-label="Repository">
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoview')}>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/repoview")}
+        >
           Code
         </UnderlineNav.Item>
         <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
           Issues
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/pullrequest')}>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/pullrequest")}
+        >
           Pull Requests
         </UnderlineNav.Item>
-        <UnderlineNav.Item sx={{ color: "whitesmoke" }} onClick={() => navigate('/repoSettings')}>
+        <UnderlineNav.Item
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate("/repoSettings")}
+        >
           Settings
         </UnderlineNav.Item>
       </UnderlineNav>
 
       <div className="pull-request-wrapper">
         <div className="pr-search-section">
-
           <div className="filter-and-search" style={{ width: "100%" }}>
             <button className="repo-search-btn">
               <p>Filter</p>
@@ -66,7 +74,10 @@ function IssueView() {
               <MilestoneIcon />
               <p>Milestone</p>
             </button>
-            <button className="new-pr-btn" onClick={() => navigate('/addIssue')}>
+            <button
+              className="new-pr-btn"
+              onClick={() => navigate(`/addIssue/${repositoryId}`)}
+            >
               <p>New Issue</p>
               {/* <ChevronDownIcon /> */}
             </button>
@@ -85,52 +96,59 @@ function IssueView() {
           </div>
         </div> */}
 
-
         <div className="pr-list-box">
           <div className="boxupper">
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
               <IssueOpenedIcon />
               <h5>62 open</h5>
             </div>
           </div>
 
           <div className="boxlower">
-
             <div className="lowerbox-card">
               <div className="lowerbox-card-text">
                 <IssueOpenedIcon />
-                <p>Ability to increase the downward speed of the ball in the Fraction Bounce Activity</p>
+                <p>
+                  Ability to increase the downward speed of the ball in the
+                  Fraction Bounce Activity
+                </p>
               </div>
               <CommentDiscussionIcon />
             </div>
             <div className="line-break"></div>
 
-
             <div className="lowerbox-card">
               <div className="lowerbox-card-text">
                 <IssueOpenedIcon />
-                <p>Ability to increase the downward speed of the ball in the Fraction Bounce Activity</p>
+                <p>
+                  Ability to increase the downward speed of the ball in the
+                  Fraction Bounce Activity
+                </p>
               </div>
               <CommentDiscussionIcon />
             </div>
             <div className="line-break"></div>
 
-
             <div className="lowerbox-card">
               <div className="lowerbox-card-text">
                 <IssueOpenedIcon />
-                <p>Ability to increase the downward speed of the ball in the Fraction Bounce Activity</p>
+                <p>
+                  Ability to increase the downward speed of the ball in the
+                  Fraction Bounce Activity
+                </p>
               </div>
               <CommentDiscussionIcon />
             </div>
             <div className="line-break"></div>
-
-
           </div>
         </div>
-
-
-
       </div>
     </div>
   );

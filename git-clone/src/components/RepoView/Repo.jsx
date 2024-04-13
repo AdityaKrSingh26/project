@@ -163,7 +163,7 @@ const Repo = () => {
         </UnderlineNav.Item>
         <UnderlineNav.Item
           sx={{ color: "whitesmoke" }}
-          onClick={() => navigate("/issue")}
+          onClick={() => navigate(`/issue/${repositoryId}`)}
         >
           Issues
         </UnderlineNav.Item>
@@ -175,7 +175,7 @@ const Repo = () => {
         </UnderlineNav.Item>
         <UnderlineNav.Item
           sx={{ color: "whitesmoke" }}
-          onClick={() => navigate("/repoSettings")}
+          onClick={() => navigate(`/repoSettings/${repositoryId}`)}
         >
           Settings
         </UnderlineNav.Item>

@@ -38,7 +38,7 @@ function Profile() {
       if (userId) {
         try {
           const response = await axios.get(
-            https://backendgit-1.onrender.com/users/${userId}
+            `https://backendgit-1.onrender.com/users/${userId}`
           );
           setUserDetails(response.data);
         } catch (error) {
@@ -148,7 +148,7 @@ function Profile() {
                   onClick={async () => {
                     const repoId = await fetchRepoId(repo.name);
                     console.log("Navigating to repoId:", repoId);
-                    navigate(/repoview/${repoId});
+                    navigate(`/repoview/${repoId}`);
                   }}
                 >
                   {repo.name}
