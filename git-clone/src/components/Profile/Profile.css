@@ -3,7 +3,7 @@
     min-height: 100vh;
     color: whitesmoke;
     width: 100%;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .user-profile-section {
@@ -19,7 +19,7 @@
     flex-wrap: wrap;
 }
 
-.name {
+.user-name {
     /* width: 250px; */
     margin: 10px 20px 10px 10px;
     /* margin: 10px auto; */
@@ -92,8 +92,18 @@
     justify-content: center;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 750px) {
     .repo {
-        width: 300px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .user-profile-section {
+        margin: auto;
+    }
+
+    .profile-page-wrapper {
+        display: block;
     }
 }

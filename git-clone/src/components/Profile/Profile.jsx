@@ -76,7 +76,7 @@ function Profile() {
                     <div className="profile-image">
                     </div>
 
-                    <div className="name">
+                    <div className="user-name">
                         <h3>Name</h3>
                         <p>username</p>
                     </div>
