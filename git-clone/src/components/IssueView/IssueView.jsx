@@ -119,7 +119,13 @@ function IssueView() {
 
           <div className="boxlower">
             {issues.map((issue) => (
-              <div key={issue._id} className="lowerbox-card" onClick={}>
+              <div
+                key={issue._id}
+                className="lowerbox-card"
+                onClick={() => {
+                  navigate(`/issueDetails/${issue._id}`);
+                }}
+              >
                 <div className="lowerbox-card-text">
                   <IssueOpenedIcon />
                   <p>{issue.title}</p>

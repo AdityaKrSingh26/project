@@ -6,7 +6,6 @@ import { ActionMenu, ActionList } from "@primer/react";
 const CreateNew = () => {
   const navigate = useNavigate();
 
-
   return (
     <div className="navabar-createnew">
       <ActionMenu>
@@ -43,7 +42,9 @@ const CreateNew = () => {
               New Repository
             </ActionList.Item>
             <ActionList.Item
-              onSelect={() => alert("Quote reply clicked")}
+              onSelect={() => {
+                window.location.href = "/createRepo";
+              }}
               sx={{
                 backgroundColor: "rgb(40,44,52)", // Set the background to black
                 color: "white", // Ensure the text color is white
@@ -53,52 +54,15 @@ const CreateNew = () => {
             </ActionList.Item>
             <ActionList.Divider />
             <ActionList.Item
-              onSelect={() => alert("Edit comment clicked")}
+              onSelect={() => {
+                window.location.href = "/editcode";
+              }}
               sx={{
                 backgroundColor: "rgb(40,44,52)", // Set the background to black
                 color: "white", // Ensure the text color is white
               }}
             >
               New Codespace
-            </ActionList.Item>
-            <ActionList.Item
-              onSelect={() => alert("Edit comment clicked")}
-              sx={{
-                backgroundColor: "rgb(40,44,52)", // Set the background to black
-                color: "white", // Ensure the text color is white
-              }}
-            >
-              New Gist
-            </ActionList.Item>
-            <ActionList.Divider />
-            <ActionList.Item
-              onSelect={() => alert("Edit comment clicked")}
-              sx={{
-                backgroundColor: "rgb(40,44,52)", // Set the background to black
-                color: "white", // Ensure the text color is white
-              }}
-            >
-              New organization
-            </ActionList.Item>
-            <ActionList.Item
-              onSelect={() => alert("Edit comment clicked")}
-              sx={{
-                backgroundColor: "rgb(40,44,52)", // Set the background to black
-                color: "white", // Ensure the text color is white
-              }}
-            >
-              New Project
-            </ActionList.Item>
-            <ActionList.Divider />
-            <ActionList.Item
-              variant="danger"
-              onSelect={() => alert("Delete file clicked")}
-              sx={{
-                backgroundColor: "rgb(40,44,52)", // Set the background to black
-                color: "white", // Ensure the text color is white
-              }}
-            >
-              Delete file
             </ActionList.Item>
           </ActionList>
         </ActionMenu.Overlay>
