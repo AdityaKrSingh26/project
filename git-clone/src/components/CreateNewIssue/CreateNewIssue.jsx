@@ -35,7 +35,7 @@ function CreateNewIssue() {
 
       console.log(response.data);
 
-      navigate(`/issueDetails/${repositoryId}`);
+      navigate(`/issueDetails/${response.data._id}`);
     } catch (error) {
       console.error("Failed to submit issue:", error);
     }

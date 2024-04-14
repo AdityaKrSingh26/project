@@ -80,6 +80,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
         formData
       );
       console.log(response.data);
+      navigate(`/repoview/${response.data._id}`);
     } catch (error) {
       console.error(error);
     }

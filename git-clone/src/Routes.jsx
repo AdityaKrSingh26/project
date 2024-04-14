@@ -78,7 +78,7 @@ const ProjectRoutes = () => {
       element: <Repo />,
     },
     {
-      path: "/pullrequest",
+      path: "/pullrequest/:repositoryId",
       element: <PullReqest />,
     },
     {
@@ -90,7 +90,7 @@ const ProjectRoutes = () => {
       element: <NotificationPage />,
     },
     {
-      path: "/issueDetails",
+      path: "/issueDetails/:issueId",
       element: <IssueDetails />,
     },
     {
@@ -110,7 +110,7 @@ const ProjectRoutes = () => {
       element: <EditCode />,
     },
     {
-      path: "/repoSettings",
+      path: "/repoSettings/:repositoryId",
       element: <RepoSettingPage />,
     },
     {
