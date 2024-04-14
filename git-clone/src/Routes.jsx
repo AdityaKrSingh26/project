@@ -82,7 +82,7 @@ const ProjectRoutes = () => {
       element: <PullReqest />,
     },
     {
-      path: "/issue",
+      path: "/issue/:repositoryId",
       element: <IssueView />,
     },
     {
@@ -94,7 +94,7 @@ const ProjectRoutes = () => {
       element: <IssueDetails />,
     },
     {
-      path: "/addIssue",
+      path: "/addIssue/:repositoryId",
       element: <CreateNewIssue />,
     },
     {

@@ -12,11 +12,11 @@ const Issues = () => {
           icon={IssueOpenedIcon}
           aria-label="Issues"
           sx={{
-            backgroundColor: "transparent", // Make the background transparent
-            border: "1px solid white", // Add a white border
-            color: "white", // Ensure the icon color is white
+            backgroundColor: "transparent",
+            border: "1px solid white",
+            color: "white",
             "&:hover": {
-              backgroundColor: "transparent", // Optional: Add a hover effect
+              backgroundColor: "transparent",
             },
           }}
         />
