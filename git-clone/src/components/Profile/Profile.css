@@ -15,6 +15,7 @@
 }
 
 .user-repo-section {
+    margin: 0px auto;
     display: flex;
     flex-wrap: wrap;
 }

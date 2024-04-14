@@ -72,8 +72,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
       visibility: visibility === "public",
       content: description ? "Heyy this is a new repo" : "",
       issues: [],
-    };
-
+    }
     try {
       const response = await axios.post(
         "https://backendgit-1.onrender.com/repos/create",
@@ -334,7 +333,6 @@ const CreateRepo = ({ ownerName, RepoName }) => {
             style={{ display: "flex", justifyContent: "flex-end" }}
           >
             <Button
-              onClick={() => navigate("/createRepoDetail")}
               variant="primary"
               onClick={handleSubmit}
               sx={{ color: "black", backgroundColor: "#26cd4d" }}
