@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 function Editor() {
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    console.log("====================================");
+    console.log("Value", value);
+    var tempDivElement = document.createElement("div");
+    tempDivElement.innerHTML = value;
+    console.log("====================================");
+    console.log(tempDivElement.textContent || tempDivElement.innerText);
+    localStorage.setItem(
+      "Description",
+      tempDivElement.textContent || tempDivElement.innerText
+    );
+    console.log("====================================");
+    console.log("====================================");
+  }, [value]);
 
   return (
     <ReactQuill

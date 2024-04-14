@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios"; // Import Axios
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
@@ -13,15 +13,17 @@ function CreateNewIssue() {
   const { repositoryId } = useParams();
 
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    localStorage.removeItem("Description");
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const status = "closed";
-    console.log("====================================");
-    console.log(description);
-    console.log("====================================");
+
     try {
+      const description = localStorage.getItem("Description");
       const response = await axios.post(
         `https://backendgit-1.onrender.com/repo/issue/${repositoryId}`,
         {
@@ -91,10 +93,7 @@ function CreateNewIssue() {
               />
               <h4>Add a description</h4>
               <div className="editor-container">
-                <Editor
-                  value={description}
-                  onChange={(content) => setDescription(content)}
-                />
+                <Editor />
               </div>
               <Button className="Submit-issue" onClick={handleSubmit}>
                 Submit New Issue
