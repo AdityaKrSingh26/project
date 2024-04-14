@@ -158,7 +158,11 @@ const Repo = () => {
       <Navbar />
 
       <UnderlineNav aria-label="Repository">
-        <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item
+          aria-current="page"
+          onClick={() => navigate(`/repoview/${repositoryId}`)}
+          sx={{ color: "whitesmoke" }}
+        >
           Code
         </UnderlineNav.Item>
         <UnderlineNav.Item

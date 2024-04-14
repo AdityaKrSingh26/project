@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { UnderlineNav, TextInput } from "@primer/react";
 import {
@@ -10,35 +9,55 @@ import {
   MilestoneIcon,
   TagIcon,
 } from "@primer/octicons-react";
-
 import "./IssueView.css";
 
 function IssueView() {
   const { repositoryId } = useParams();
   const navigate = useNavigate();
+  const [issues, setIssues] = useState([]);
+
+  useEffect(() => {
+    const fetchIssues = async () => {
+      try {
+        const response = await fetch(
+          `https://backendgit-1.onrender.com/repo/issues/${repositoryId}`
+        );
+        const data = await response.json();
+        setIssues(data);
+      } catch (error) {
+        console.error("Failed to fetch issues:", error);
+      }
+    };
+
+    fetchIssues();
+  }, [repositoryId]); // Add repositoryId as a dependency to refetch if it changes
 
   return (
     <div>
       <Navbar />
       <UnderlineNav aria-label="Repository">
         <UnderlineNav.Item
+          onClick={() => navigate(`/repoview/${repositoryId}`)}
           sx={{ color: "whitesmoke" }}
-          onClick={() => navigate("/repoview")}
         >
           Code
         </UnderlineNav.Item>
-        <UnderlineNav.Item aria-current="page" sx={{ color: "whitesmoke" }}>
+        <UnderlineNav.Item
+          aria-current="page"
+          sx={{ color: "whitesmoke" }}
+          onClick={() => navigate(`/issue/${repositoryId}`)}
+        >
           Issues
         </UnderlineNav.Item>
         <UnderlineNav.Item
           sx={{ color: "whitesmoke" }}
-          onClick={() => navigate("/pullrequest")}
+          onClick={() => navigate(`/pullrequest/${repositoryId}`)}
         >
           Pull Requests
         </UnderlineNav.Item>
         <UnderlineNav.Item
           sx={{ color: "whitesmoke" }}
-          onClick={() => navigate("/repoSettings")}
+          onClick={() => navigate(`/repoSettings/${repositoryId}`)}
         >
           Settings
         </UnderlineNav.Item>
@@ -55,8 +74,8 @@ function IssueView() {
               sx={{
                 width: "90%",
                 height: "30px",
-                backgroundColor: "transparent", // Make the background transparent
-                color: "whitesmoke", // Ensure the icon color is white
+                backgroundColor: "transparent",
+                color: "whitesmoke",
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
@@ -79,22 +98,9 @@ function IssueView() {
               onClick={() => navigate(`/addIssue/${repositoryId}`)}
             >
               <p>New Issue</p>
-              {/* <ChevronDownIcon /> */}
             </button>
           </div>
         </div>
-
-        {/* <div className="pr-list-section">
-          <div className="text-info">
-            <IssueOpenedIcon size={24} />
-            <h3>Welcome to issues!</h3>
-            <p className="description">
-              Issues are used to track todos, bugs, feature requests, and more.
-              As issues are created, they’ll appear here in a searchable and
-              filterable list. To get started, you should create an issue.
-            </p>
-          </div>
-        </div> */}
 
         <div className="pr-list-box">
           <div className="boxupper">
@@ -112,41 +118,21 @@ function IssueView() {
           </div>
 
           <div className="boxlower">
-            <div className="lowerbox-card">
-              <div className="lowerbox-card-text">
-                <IssueOpenedIcon />
-                <p>
-                  Ability to increase the downward speed of the ball in the
-                  Fraction Bounce Activity
-                </p>
+            {issues.map((issue) => (
+              <div
+                key={issue._id}
+                className="lowerbox-card"
+                onClick={() => {
+                  navigate(`/issueDetails/${issue._id}`);
+                }}
+              >
+                <div className="lowerbox-card-text">
+                  <IssueOpenedIcon />
+                  <p>{issue.title}</p>
+                </div>
+                <CommentDiscussionIcon />
               </div>
-              <CommentDiscussionIcon />
-            </div>
-            <div className="line-break"></div>
-
-            <div className="lowerbox-card">
-              <div className="lowerbox-card-text">
-                <IssueOpenedIcon />
-                <p>
-                  Ability to increase the downward speed of the ball in the
-                  Fraction Bounce Activity
-                </p>
-              </div>
-              <CommentDiscussionIcon />
-            </div>
-            <div className="line-break"></div>
-
-            <div className="lowerbox-card">
-              <div className="lowerbox-card-text">
-                <IssueOpenedIcon />
-                <p>
-                  Ability to increase the downward speed of the ball in the
-                  Fraction Bounce Activity
-                </p>
-              </div>
-              <CommentDiscussionIcon />
-            </div>
-            <div className="line-break"></div>
+            ))}
           </div>
         </div>
       </div>
