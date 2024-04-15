@@ -10,6 +10,28 @@ function RepoSettingPage() {
   const navigate = useNavigate();
   const repositoryId = useParams();
 
+  const deleteRepo = async (repoId) => {
+    try {
+      const response = await fetch(
+        `https://backendgit-1.onrender.com/repos/${repositoryId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete repository");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      navigate(`/`);
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -265,8 +287,9 @@ function RepoSettingPage() {
                 <button
                   className="btn"
                   style={{ marginLeft: "0px", color: "red" }}
+                  onClick={deleteRepo}
                 >
-                  Delete This Repsoitory
+                  Delete This Repository
                 </button>
               </div>
             </div>

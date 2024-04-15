@@ -90,7 +90,7 @@ const Feed = () => {
                         {repo.name}
                       </Typography>
                       <Typography variant="body2" color="whitesmoke">
-                        {repo.description}
+                        {repo.content[0]}
                       </Typography>
                     </CardContent>
                     <CardActions>
