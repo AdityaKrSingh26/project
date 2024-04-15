@@ -141,7 +141,7 @@ function LoginPage() {
 
           <Button
             variant="primary"
-            sx={{ width: 250 }}
+            className="login-btn"
             onClick={handleLogin}
             disabled={loader}
           >
@@ -150,7 +150,7 @@ function LoginPage() {
 
           <Button
             variant="primary"
-            sx={{ width: 250 }}
+            className="login-btn"
             onClick={() => login()}
             disabled={loader}
           >

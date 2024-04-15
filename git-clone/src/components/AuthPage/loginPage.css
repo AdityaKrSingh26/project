@@ -107,6 +107,10 @@
   /* font-size: px; */
 }
 
+.login-btn {
+  width: 250px;
+}
+
 .pass-box {
   width: 364px;
   height: auto;
@@ -132,7 +136,7 @@
     width: 150px;
   }
 
-  .signup-button {
+  .login-btn {
     width: 150px;
   }
 

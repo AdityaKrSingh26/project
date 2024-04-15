@@ -113,7 +113,7 @@ function RepositriesPage() {
           <div className="repo-search-section">
             <TextInput
               sx={{
-                width: "50%",
+                width: "40%",
                 backgroundColor: "transparent", // Make the background transparent
                 color: "whitesmoke", // Ensure the icon color is white
                 "&:hover": {

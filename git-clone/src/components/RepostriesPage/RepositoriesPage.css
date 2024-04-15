@@ -54,12 +54,20 @@
 }
 
 .repo-search-section {
+    flex-wrap: wrap;
+    gap: 20px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     margin: 3% 30px;
 }
 
 .repo-search-btn {
     font-size: smaller;
+}
+
+@media screen and (max-width: 580px) {
+    .repo-page-wrapper {
+        display: block;
+    }
 }
