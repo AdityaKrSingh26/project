@@ -34,6 +34,7 @@ const Repo = () => {
   const [componentCount, setComponentCount] = useState(10);
   const { repositoryId } = useParams();
   const [repositoryTitle, setRepositoryTitle] = useState("");
+  const [repositoryFile, setRepositoryFile] = useState("");
 
   useEffect(() => {
     const fetchRepoTitle = async () => {
@@ -45,6 +46,7 @@ const Repo = () => {
           `https://backendgit-1.onrender.com/repos/${repositoryId}`
         );
         setRepositoryTitle(response.data);
+        setRepositoryFile(response.data.content);
         console.log("====================================");
         console.log(response.data);
         console.log("====================================");
@@ -54,6 +56,7 @@ const Repo = () => {
         setIsLoading(false);
       }
     };
+
     fetchRepoTitle();
   }, [repositoryId]);
 
@@ -261,7 +264,9 @@ const Repo = () => {
                             backgroundColor: "rgb(40,44,52)",
                             color: "white",
                           }}
-                          onClick={() => navigate("/uploadFile")}
+                          onClick={() =>
+                            navigate(`/uploadFile/${repositoryId}`)
+                          }
                         >
                           Upload File
                         </ActionList.Item>
@@ -341,24 +346,24 @@ const Repo = () => {
               </div>
 
               <div className="tableBody">
-                {mockData.map((item, index) => (
-                  <div
-                    key={index}
-                    className="rows"
-                    onClick={() => navigate("/editcode")}
-                  >
-                    <div className="leftTextBody">
-                      {item.type === "folder" ? (
-                        <FileDirectoryFillIcon size={16} />
-                      ) : (
+                {repositoryFile.map((item, index) => {
+                  // Extract the file name from the URL
+                  const fileName = item.split("/").pop();
+                  return (
+                    <div
+                      key={index}
+                      className="rows"
+                      onClick={() => navigate("/editcode")}
+                    >
+                      <div className="leftTextBody">
                         <FileIcon size={16} />
-                      )}
-                      {item.folderName}
+                        {fileName}
+                      </div>
+                      <div className="centreTextBody">First Commit</div>
+                      <div className="rightTextBody">Last Commit</div>
                     </div>
-                    <div className="centreTextBody">{item.lastCommitText}</div>
-                    <div className="rightTextBody">{item.lastCommitTime}</div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </PageLayout.Content>
             <PageLayout.Pane sx={{}}>

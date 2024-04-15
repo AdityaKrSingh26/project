@@ -71,10 +71,6 @@ function IssueDetails() {
             </div>
           </div>
         </div>
-
-        <div className="new-issue">
-          <button onClick={() => navigate("/addIssue")}>New Issue</button>
-        </div>
       </div>
 
       <div className="line-break" style={{ margin: "20px" }}></div>
