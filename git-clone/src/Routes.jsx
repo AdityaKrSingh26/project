@@ -118,7 +118,7 @@ const ProjectRoutes = () => {
       element: <CommitHistory />,
     },
     {
-      path: "/uploadFile",
+      path: "/uploadFile/:repositoryId",
       element: <UploadFile />,
     },
   ]);
