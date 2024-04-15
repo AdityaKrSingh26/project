@@ -58,8 +58,8 @@ function PullReqest() {
               sx={{
                 width: "500px",
                 height: "30px",
-                backgroundColor: "transparent", // Make the background transparent
-                color: "whitesmoke", // Ensure the icon color is white
+                backgroundColor: "transparent",
+                color: "whitesmoke",
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
