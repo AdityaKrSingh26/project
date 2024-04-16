@@ -63,10 +63,7 @@ function LoginPage() {
         localStorage.setItem("userId", userId);
         setLoader(false);
         setCurrentUser(userId);
-        console.log("====================================");
-        console.log(res.data);
-        console.log("====================================");
-        window.location.href = "/"; // Adjust the path as needed
+        window.location.href = "/";
       } catch (err) {
         console.error(err);
         alert("Google login failed. Please try again.");

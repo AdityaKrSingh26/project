@@ -1,25 +1,20 @@
-.BodyContent {
-  display: flex;
-  height: 100%;
-}
-
 .side {
-  width: 20vw;
+  width: 300px;
   /* height: 100vh; */
   border-right: 1px solid black;
 }
 
 /* Body.css */
 .BodyContent {
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex-direction: row;
 }
 
 /* .side {
   flex: 1;
 } */
-
 
 /* Media query for mobile devices */
 /* @media (max-width: 1000px) {

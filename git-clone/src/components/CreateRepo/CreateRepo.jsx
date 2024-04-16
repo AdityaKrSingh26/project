@@ -78,7 +78,7 @@ const CreateRepo = ({ ownerName, RepoName }) => {
         formData
       );
       console.log(response.data);
-      navigate(`/repoview/${response.data._id}`);
+      navigate(`/repoview/${response.data.repositoryId}`);
     } catch (error) {
       console.error(error);
     }

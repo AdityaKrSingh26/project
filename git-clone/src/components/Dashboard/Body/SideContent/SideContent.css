@@ -77,7 +77,7 @@ Button {
   margin-left: 20px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1270px) {
   .cards {
     flex-direction: column;
   }

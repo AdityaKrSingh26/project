@@ -17,7 +17,7 @@ function NotificationPage() {
     const fetchIssues = async () => {
       try {
         const response = await axios.get(
-          `https://backendgit-1.onrender.com/repo/issues/${userID}`
+          `https://backendgit-1.onrender.com/repo/issues/user/${userID}`
         );
         setIssues(response.data);
       } catch (error) {
@@ -42,12 +42,6 @@ function NotificationPage() {
       socket.disconnect();
     };
   }, []);
-
-  const filteredIssues = issues.filter(
-    (issue) =>
-      issue.title &&
-      issue.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div>
