@@ -15,6 +15,7 @@ function EditCode() {
         <h4>project/README.md</h4>
         <div className="submit-btn-section">
           <button className="btn">Cancel</button>
+          <button className="btn">Delete File</button>
           <button className="btn">Submit Changes</button>
         </div>
       </div>
