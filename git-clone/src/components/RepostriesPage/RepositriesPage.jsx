@@ -20,6 +20,10 @@ function RepositriesPage() {
 
   const [repos, setRepos] = useState([]); // State to store fetched repositories
   const [searchQuery, setSearchQuery] = useState(""); // State to store search query
+  const [userDetails, setUserDetails] = useState({
+    username: "username",
+    content: "HTML",
+  }); // State to store user details
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -33,7 +37,23 @@ function RepositriesPage() {
         console.error("Failed to fetch repositories:", error);
       }
     };
+
+    const fetchUserDetails = async () => {
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+        try {
+          const response = await axios.get(
+            `https://backendgit-1.onrender.com/users/${userId}`
+          );
+          setUserDetails(response.data);
+        } catch (error) {
+          console.error("Failed to fetch user details:", error);
+        }
+      }
+    };
+
     fetchRepos();
+    fetchUserDetails();
   }, []);
 
   // Function to handle search input change
@@ -108,8 +128,8 @@ function RepositriesPage() {
           <div className="profile-image"></div>
 
           <div className="name">
-            <h3>Name</h3>
-            <p>username</p>
+            <h3>{userDetails.username}</h3>
+            <p>{userDetails.content}</p>
           </div>
 
           <button className="follow-btn">Follow</button>
