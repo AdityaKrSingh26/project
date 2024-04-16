@@ -352,7 +352,7 @@ const Repo = () => {
                     <div
                       key={index}
                       className="rows"
-                      onClick={() => navigate("/editcode")}
+                      onClick={() => navigate(`/editcode/${repositoryId}`)}
                     >
                       <div className="leftTextBody">
                         <FileIcon size={16} />

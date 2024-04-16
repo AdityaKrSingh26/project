@@ -60,11 +60,7 @@ const Feed = () => {
   return (
     <>
       <div className="cards">
-        <div className="dashboard-card-container"
-          style={{
-            
-          }}
-        >
+        <div className="dashboard-card-container" style={{}}>
           <div className="home-result-container">
             <h1 className="HomeText" style={{ margin: "0" }}>
               Home

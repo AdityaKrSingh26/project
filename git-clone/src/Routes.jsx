@@ -105,7 +105,7 @@ const ProjectRoutes = () => {
       element: <CreateRepoDetail />,
     },
     {
-      path: "/editcode",
+      path: "/editcode/:repositoryId",
       element: <EditCode />,
     },
     {

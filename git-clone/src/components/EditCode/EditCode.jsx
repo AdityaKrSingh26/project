@@ -5,8 +5,31 @@ import { ActionMenu, ActionList } from "@primer/react";
 
 import "./EditCode.css";
 import RepoCodeEditor from "./RepoCodeEditor";
+import { Navigate, useParams } from "react-router-dom";
 
 function EditCode() {
+  const { repositoryId } = useParams();
+  const deleteFile = async () => {
+    try {
+      const response = await fetch(
+        `https://backendgit-1.onrender.com/repos/filechange/${repositoryId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete file");
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+      Navigate(`/repoview/${repositoryId}`);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -15,7 +38,9 @@ function EditCode() {
         <h4>project/README.md</h4>
         <div className="submit-btn-section">
           <button className="btn">Cancel</button>
-          <button className="btn">Delete File</button>
+          <button className="btn" onClick={deleteFile}>
+            Delete File
+          </button>
           <button className="btn">Submit Changes</button>
         </div>
       </div>
