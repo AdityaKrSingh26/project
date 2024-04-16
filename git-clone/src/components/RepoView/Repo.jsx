@@ -43,7 +43,7 @@ const Repo = () => {
         console.log("id", repositoryId);
         console.log("====================================");
         const response = await axios.get(
-          `https://backendgit-1.onrender.com/repos/${repositoryId}`
+          `https://backendgit-1.onrender.com/repos/getRepositoryById/${repositoryId}`
         );
         setRepositoryTitle(response.data);
         setRepositoryFile(response.data.content);

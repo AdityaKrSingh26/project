@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import io from "socket.io-client"; // Import Socket.IO client
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { ChevronDownIcon } from "@primer/octicons-react";
 import { TextInput } from "@primer/react";
@@ -10,13 +11,13 @@ import SideDrawer from "./SideDrawer";
 
 function NotificationPage() {
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // State for search term
-
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
+    const userID = localStorage.getItem("userId");
     const fetchIssues = async () => {
       try {
         const response = await axios.get(
-          "https://backendgit-1.onrender.com/repo/issues"
+          `https://backendgit-1.onrender.com/repo/issues/user/${userID}`
         );
         setIssues(response.data);
       } catch (error) {
@@ -25,11 +26,22 @@ function NotificationPage() {
     };
 
     fetchIssues();
-  }, []);
 
-  const filteredIssues = issues.filter((issue) =>
-    issue.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    const socket = io("https://backendgit-1.onrender.com");
+
+    socket.on("connect", () => {
+      socket.emit("joinRoom", userID);
+    });
+
+    socket.on("issueUpdate", (updatedIssue) => {
+      console.log("Updated issues:", updatedIssue);
+      setIssues(updatedIssue);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return (
     <div>
@@ -81,15 +93,18 @@ function NotificationPage() {
             </div>
 
             <div className="message-section">
-              {filteredIssues.map((issue, index) => (
-                <div key={index} className="message">
-                  <input type="checkbox" />
-                  <div className="text-section">
-                    <h5>{issue.title}</h5>
-                    {/* Display other issue details as needed */}
+              {issues
+                .slice()
+                .reverse()
+                .map((issue, index) => (
+                  <div key={index} className="message">
+                    <input type="checkbox" />
+                    <div className="text-section">
+                      <h5>{issue.title}</h5>
+                      {/* Display other issue details as needed */}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
