@@ -25,8 +25,10 @@ function NotificationPage() {
     };
 
     fetchIssues();
-
-    const socket = io("https://backendgit-1.onrender.com");
+    const userID = localStorage.getItem("userId");
+    const socket = io("https://backendgit-1.onrender.com", {
+      query: { userID: userID },
+    });
 
     socket.on("issueUpdate", (updatedIssue) => {
       console.log("====================================");
