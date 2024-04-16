@@ -24,8 +24,9 @@ function Profile() {
   useEffect(() => {
     const fetchRepositories = async () => {
       try {
+        const id = localStorage.getItem("userId");
         const response = await axios.get(
-          "https://backendgit-1.onrender.com/repos"
+          `https://backendgit-1.onrender.com/repos/getAll/${id}`
         );
         setRepositories(response.data);
       } catch (error) {

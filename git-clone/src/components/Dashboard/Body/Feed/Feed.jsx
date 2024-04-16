@@ -41,7 +41,10 @@ const Feed = () => {
     const fetchRepositories = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("https://backendgit-1.onrender.com/repos");
+        const id = localStorage.getItem("userId");
+        const response = await fetch(
+          `https://backendgit-1.onrender.com/repos/getAll/${id}`
+        );
         const data = await response.json();
         setRepositories(data);
       } catch (error) {
@@ -75,41 +78,44 @@ const Feed = () => {
                 Loading repositories...
               </Typography>
             ) : (
-              repositories.slice(0, visibleRepos).map((repo, index) => (
-                <Box key={index}>
-                  <Card
-                    className="dashboard-card"
-                    variant="outlined"
-                    sx={{
-                      marginBottom:
-                        index === repositories.length - 1 ? "20px" : "0",
-                    }}
-                  >
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {repo.name}
-                      </Typography>
-                      <Typography variant="body2" color="whitesmoke">
-                        {repo.content[0]}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
-                        size="small"
-                        href={repo.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={async () => {
-                          repositoryId = await fetchRepoId(repo.name);
-                          navigate(`/repoview/${repositoryId}`);
-                        }}
-                      >
-                        View Repository
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Box>
-              ))
+              repositories
+                .slice(0, visibleRepos)
+                .reverse()
+                .map((repo, index) => (
+                  <Box key={index}>
+                    <Card
+                      className="dashboard-card"
+                      variant="outlined"
+                      sx={{
+                        marginBottom:
+                          index === repositories.length - 1 ? "20px" : "0",
+                      }}
+                    >
+                      <CardContent>
+                        <Typography variant="h5" component="div">
+                          {repo.name}
+                        </Typography>
+                        <Typography variant="body2" color="whitesmoke">
+                          {repo.content[0]}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="small"
+                          href={repo.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={async () => {
+                            repositoryId = await fetchRepoId(repo.name);
+                            navigate(`/repoview/${repositoryId}`);
+                          }}
+                        >
+                          View Repository
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Box>
+                ))
             )}
 
             {visibleRepos < repositories.length && (

@@ -8,7 +8,7 @@ import "./RepoSettingPage.css";
 
 function RepoSettingPage() {
   const navigate = useNavigate();
-  const repositoryId = useParams();
+  const { repositoryId } = useParams();
 
   const deleteRepo = async (repoId) => {
     try {

@@ -35,7 +35,6 @@ const ProjectRoutes = () => {
       setCurrentUser(userIdFromStorage);
     }
 
-    // Redirect to the login page if no current user is found and not on /auth or /signup
     if (
       !userIdFromStorage &&
       !["/auth", "/signup"].includes(window.location.pathname)
@@ -58,8 +57,8 @@ const ProjectRoutes = () => {
       element: <LoginPage />,
     },
     {
-      path: "/signup", // Assuming you have a SignUpPage component
-      element: <SignUpPage />, // Make sure to import and use your SignUpPage component here
+      path: "/signup",
+      element: <SignUpPage />,
     },
     {
       path: "/profile",
@@ -102,7 +101,7 @@ const ProjectRoutes = () => {
       element: <CreateRepo />,
     },
     {
-      path: "/createRepoDetail",
+      path: "/createRepoDetail/:repositoryId",
       element: <CreateRepoDetail />,
     },
     {
