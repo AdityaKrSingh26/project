@@ -57,12 +57,9 @@ const Feed = () => {
   return (
     <>
       <div className="cards">
-        <div
+        <div className="dashboard-card-container"
           style={{
-            margin: "0px auto",
-            display: "flex",
-            flexWrap: "wrap",
-            color: "white",
+            
           }}
         >
           <div className="home-result-container">

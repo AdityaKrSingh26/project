@@ -85,6 +85,7 @@ const Sidebar = () => {
       <b className="sidebar-heading">Recent </b>
       <div className="recent">
         <Searchbar
+          sx={{ width: "100%" }}
           placeholder="Search repositories..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

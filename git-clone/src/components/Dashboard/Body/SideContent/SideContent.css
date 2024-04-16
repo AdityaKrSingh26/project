@@ -63,12 +63,13 @@ Button {
 }
 
 .side-content-left-container {
+  width: 100%;
   margin: 20px;
   /* flex: 1; */
   padding: "20px";
   display: "flex";
   flex-direction: "column";
-  gap: 20px;
+  gap: 40px;
   /* overflowY: "auto"; */
   /* marginTop: "4vw"; */
 }
@@ -77,21 +78,3 @@ Button {
   margin-left: 20px;
 }
 
-@media screen and (max-width: 1000px) {
-  .cards {
-    flex-direction: column;
-  }
-
-  .dashboard-card {
-    width: "100%";
-    /* max-width: "600px"; */
-  }
-
-  .home-result-container {
-    width: 100%;
-  }
-
-  .side-content-left-container {
-    width: 100%;
-  }
-}
