@@ -26,18 +26,25 @@ function NotificationPage() {
 
     fetchIssues();
 
-    const socket = io("http://localhost:5000");
+    const socket = io("https://backendgit-1.onrender.com");
 
     socket.on("issueUpdate", (updatedIssue) => {
-      setIssues((prevIssues) => [...prevIssues, updatedIssue]);
+      console.log("====================================");
+      console.log(updatedIssue);
+      console.log("====================================");
+
+      setIssues(updatedIssue);
     });
+
     return () => {
       socket.disconnect();
     };
   }, []);
 
-  const filteredIssues = issues.filter((issue) =>
-    issue.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredIssues = issues.filter(
+    (issue) =>
+      issue.title &&
+      issue.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -90,15 +97,18 @@ function NotificationPage() {
             </div>
 
             <div className="message-section">
-              {filteredIssues.map((issue, index) => (
-                <div key={index} className="message">
-                  <input type="checkbox" />
-                  <div className="text-section">
-                    <h5>{issue.title}</h5>
-                    {/* Display other issue details as needed */}
+              {issues
+                .slice()
+                .reverse()
+                .map((issue, index) => (
+                  <div key={index} className="message">
+                    <input type="checkbox" />
+                    <div className="text-section">
+                      <h5>{issue.title}</h5>
+                      {/* Display other issue details as needed */}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
