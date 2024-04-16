@@ -77,6 +77,28 @@ const Feed = () => {
                 {" "}
                 Loading repositories...
               </Typography>
+            ) : repositories.length === 0 ? (
+              <Box>
+                <Card
+                  className="dashboard-card"
+                  variant="outlined"
+                  sx={{
+                    marginBottom: "20px",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      Welcome to GitHub
+                    </Typography>
+                    <Typography variant="body2" color="whitesmoke">
+                      Start exploring repositories!
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Get Started</Button>
+                  </CardActions>
+                </Card>
+              </Box>
             ) : (
               repositories
                 .slice(0, visibleRepos)
@@ -133,7 +155,6 @@ const Feed = () => {
           </div>
 
           <div className="side-content-left-container">
-            {/* Example GitHub-style side card */}
             <Card
               sx={{
                 width: "90%",
@@ -144,7 +165,7 @@ const Feed = () => {
                 <Typography variant="h5" component="div">
                   GitHub Trending
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.primary">
                   Check out the most popular repositories on GitHub.
                 </Typography>
               </CardContent>
@@ -158,7 +179,7 @@ const Feed = () => {
                 <Typography variant="h5" component="div">
                   GitHub Trending
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.primary">
                   Check out the most popular repositories on GitHub.
                 </Typography>
               </CardContent>
