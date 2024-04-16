@@ -30,7 +30,7 @@ function IssueView() {
     };
 
     fetchIssues();
-  }, [repositoryId]); // Add repositoryId as a dependency to refetch if it changes
+  }, [repositoryId]);
 
   return (
     <div>

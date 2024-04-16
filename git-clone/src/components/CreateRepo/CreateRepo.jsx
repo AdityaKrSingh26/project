@@ -16,7 +16,6 @@ import {
 import { LockIcon, RepoIcon } from "@primer/octicons-react";
 import axios from "axios";
 
-// Extracted FilterInput component for reusability
 const FilterInput = ({ placeholder, value, onChange }) => (
   <TextInput
     placeholder={placeholder}
@@ -70,9 +69,9 @@ const CreateRepo = ({ ownerName, RepoName }) => {
       repositoryName: repoName,
       description: description,
       visibility: visibility === "public",
-      content: description ? "Heyy this is a new repo" : "",
+      content: "",
       issues: [],
-    }
+    };
     try {
       const response = await axios.post(
         "https://backendgit-1.onrender.com/repos/create",

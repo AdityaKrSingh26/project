@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import io from "socket.io-client"; // Import Socket.IO client
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
 import { ChevronDownIcon } from "@primer/octicons-react";
 import { TextInput } from "@primer/react";
@@ -10,8 +11,7 @@ import SideDrawer from "./SideDrawer";
 
 function NotificationPage() {
   const [issues, setIssues] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // State for search term
-
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     const fetchIssues = async () => {
       try {
@@ -25,6 +25,15 @@ function NotificationPage() {
     };
 
     fetchIssues();
+
+    const socket = io("http://localhost:5000");
+
+    socket.on("issueUpdate", (updatedIssue) => {
+      setIssues((prevIssues) => [...prevIssues, updatedIssue]);
+    });
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const filteredIssues = issues.filter((issue) =>

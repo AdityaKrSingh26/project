@@ -29,7 +29,6 @@ function Editor() {
       onChange={setValue}
       style={{
         height: "200px",
-        // width: '90%',
         color: "white",
         borderRadius: "10px",
       }}
