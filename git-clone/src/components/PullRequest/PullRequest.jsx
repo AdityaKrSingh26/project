@@ -14,7 +14,7 @@ import "./PullRequest.css";
 
 function PullReqest() {
   const navigate = useNavigate();
-  const repositoryId = useParams();
+  const { repositoryId } = useParams();
 
   return (
     <div>

@@ -346,8 +346,7 @@ const Repo = () => {
               </div>
 
               <div className="tableBody">
-                {repositoryFile.map((item, index) => {
-                  // Extract the file name from the URL
+                {repositoryFile.slice(1).map((item, index) => {
                   const fileName = item.split("/").pop();
                   return (
                     <div

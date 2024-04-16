@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Dashboard/Navbar/Navbar/Navbar";
@@ -20,12 +19,14 @@ function RepositriesPage() {
   const navigate = useNavigate();
 
   const [repos, setRepos] = useState([]); // State to store fetched repositories
+  const [searchQuery, setSearchQuery] = useState(""); // State to store search query
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
+        const id = localStorage.getItem("userId");
         const response = await axios.get(
-          "https://backendgit-1.onrender.com/repos"
+          `https://backendgit-1.onrender.com/repos/getAll/${id}`
         );
         setRepos(response.data); // Set the fetched repositories
       } catch (error) {
@@ -34,6 +35,16 @@ function RepositriesPage() {
     };
     fetchRepos();
   }, []);
+
+  // Function to handle search input change
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Filter repositories based on search query
+  const filteredRepos = repos.filter((repo) =>
+    repo.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div>
@@ -44,8 +55,8 @@ function RepositriesPage() {
           onClick={() => navigate("/profile")}
           icon={BookIcon}
           sx={{
-            backgroundColor: "transparent", // Make the background transparent
-            color: "whitesmoke", // Ensure the icon color is white
+            backgroundColor: "transparent",
+            color: "whitesmoke",
             "&:hover": {
               backgroundColor: "transparent",
             },
@@ -57,8 +68,8 @@ function RepositriesPage() {
           aria-current="page"
           icon={RepoIcon}
           sx={{
-            backgroundColor: "transparent", // Make the background transparent
-            color: "whitesmoke", // Ensure the icon color is white
+            backgroundColor: "transparent",
+            color: "whitesmoke",
             "&:hover": {
               backgroundColor: "transparent",
             },
@@ -69,8 +80,8 @@ function RepositriesPage() {
         <UnderlineNav.Item
           icon={PivotColumnIcon}
           sx={{
-            backgroundColor: "transparent", // Make the background transparent
-            color: "whitesmoke", // Ensure the icon color is white
+            backgroundColor: "transparent",
+            color: "whitesmoke",
             "&:hover": {
               backgroundColor: "transparent",
             },
@@ -81,8 +92,8 @@ function RepositriesPage() {
         <UnderlineNav.Item
           icon={PackageIcon}
           sx={{
-            backgroundColor: "transparent", // Make the background transparent
-            color: "whitesmoke", // Ensure the icon color is white
+            backgroundColor: "transparent",
+            color: "whitesmoke",
             "&:hover": {
               backgroundColor: "transparent",
             },
@@ -114,13 +125,15 @@ function RepositriesPage() {
             <TextInput
               sx={{
                 width: "40%",
-                backgroundColor: "transparent", // Make the background transparent
-                color: "whitesmoke", // Ensure the icon color is white
+                backgroundColor: "transparent",
+                color: "whitesmoke",
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
               }}
               placeholder="Find a repository..."
+              value={searchQuery}
+              onChange={handleSearchChange} // Update search query state on change
             />
 
             <button className="repo-search-btn">
@@ -144,44 +157,47 @@ function RepositriesPage() {
             </button>
           </div>
 
-          {repos.map((repo) => (
-            <div key={repo._id} className="repo-item-wrapper">
-              <div className="repo-info">
-                <h3
-                  onClick={() => navigate(`/repoview/${repo._id}`)}
-                  className="repository-name"
-                >
-                  {repo.name}
-                </h3>
-                <p className="description">{repo.content[0]}</p>
+          {filteredRepos
+            .slice()
+            .reverse()
+            .map((repo) => (
+              <div key={repo._id} className="repo-item-wrapper">
+                <div className="repo-info">
+                  <h3
+                    onClick={() => navigate(`/repoview/${repo._id}`)}
+                    className="repository-name"
+                  >
+                    {repo.name}
+                  </h3>
+                  <p className="description">{repo.content[0]}</p>
 
-                <div className="repo-info-section">
-                  <div className="language-item">
-                    <div
-                      style={{
-                        backgroundColor: "green",
-                        width: "10px",
-                        height: "10px",
-                        borderRadius: "50%",
-                      }}
-                    ></div>
-                    <p>HTML</p>
-                  </div>
+                  <div className="repo-info-section">
+                    <div className="language-item">
+                      <div
+                        style={{
+                          backgroundColor: "green",
+                          width: "10px",
+                          height: "10px",
+                          borderRadius: "50%",
+                        }}
+                      ></div>
+                      <p>HTML</p>
+                    </div>
 
-                  <div className="description">
-                    Updated {/* Adjust based on your API's response */}
+                    <div className="description">
+                      Updated {/* Adjust based on your API's response */}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="repo-acftions">
-                <button className="repo-star-btn">
-                  <StarIcon />
-                  <p>Star</p>
-                </button>
+                <div className="repo-acftions">
+                  <button className="repo-star-btn">
+                    <StarIcon />
+                    <p>Star</p>
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
