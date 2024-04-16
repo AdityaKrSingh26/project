@@ -13,10 +13,11 @@ function NotificationPage() {
   const [issues, setIssues] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
+    const userID = localStorage.getItem("userId");
     const fetchIssues = async () => {
       try {
         const response = await axios.get(
-          "https://backendgit-1.onrender.com/repo/issues"
+          `https://backendgit-1.onrender.com/repo/issues/${userID}`
         );
         setIssues(response.data);
       } catch (error) {
@@ -25,16 +26,15 @@ function NotificationPage() {
     };
 
     fetchIssues();
-    const userID = localStorage.getItem("userId");
-    const socket = io("https://backendgit-1.onrender.com", {
-      query: { userID: userID },
+
+    const socket = io("https://backendgit-1.onrender.com");
+
+    socket.on("connect", () => {
+      socket.emit("joinRoom", userID);
     });
 
     socket.on("issueUpdate", (updatedIssue) => {
-      console.log("====================================");
-      console.log(updatedIssue);
-      console.log("====================================");
-
+      console.log("Updated issues:", updatedIssue);
       setIssues(updatedIssue);
     });
 
