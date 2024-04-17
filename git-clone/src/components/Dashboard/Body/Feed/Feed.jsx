@@ -139,7 +139,7 @@ const Feed = () => {
                 color="primary"
                 onClick={handleViewMore}
                 sx={{
-                  width: "90%",
+                  width: "100%",
                 }}
               >
                 View More

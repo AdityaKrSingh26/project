@@ -26,7 +26,6 @@
   color: rgb(223, 223, 223) !important;
 }
 
-
 .feed-container {
   display: flex;
   height: 95vh;
@@ -47,7 +46,7 @@
 
 .dashboard-card {
   width: 90%;
-  min-width: 300px;
+  min-width: 450px;
 }
 
 .dashboard-card-container {
