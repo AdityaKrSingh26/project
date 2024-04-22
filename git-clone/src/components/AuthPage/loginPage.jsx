@@ -31,7 +31,7 @@ function LoginPage() {
             client_id:
               "91345958396-beb4723vdvoj27ueujgpvru8chf0hsir.apps.googleusercontent.com",
             client_secret: "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",
-            redirect_uri: "https://git-clone-mu.vercel.app",
+            redirect_uri: "https://project-vter.onrender.com",
             grant_type: "authorization_code",
           }
         );
@@ -63,7 +63,7 @@ function LoginPage() {
         localStorage.setItem("userId", userId);
         setLoader(false);
         setCurrentUser(userId);
-   
+
         window.location.href = "/"; // Adjust the path as needed
       } catch (err) {
         console.error(err);
